@@ -24,3 +24,5 @@ LIVE_WIRE_DEMO=1 ./.venv/bin/python app/server.py
 Source: [github.com/willykeenan/live-wire](https://github.com/willykeenan/live-wire)
 
 Satire must be labelled. Never present rumors as confirmed. Operators are responsible for what they broadcast.
+
+Watch the live channel: https://livewire.show · Source: https://github.com/willykeenan/live-wire
