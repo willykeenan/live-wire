@@ -1,5 +1,7 @@
 # Live Wire
 
+**Watch the live channel: [livewire.show](https://livewire.show)** · Try the keyless demo on [Hugging Face](https://huggingface.co/spaces/willykeenan/live-wire)
+
 **A 24/7 AI satirical news channel with cartoon anchors, mouth sync, LLM-written scripts, and ElevenLabs voices.**
 
 *A KE Studios product. Source: [github.com/willykeenan/live-wire](https://github.com/willykeenan/live-wire).*
