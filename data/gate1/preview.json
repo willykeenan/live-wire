@@ -1,0 +1,645 @@
+{
+  "fixtureId": "livewire-gate1-read-only-preview-v2",
+  "fixtureOnly": true,
+  "generatedAt": "2026-07-12T07:00:00Z",
+  "productionAuthority": false,
+  "schemaVersion": "livewire.editorial.v2",
+  "sourceCapture": "data/gate1/source_wire.json",
+  "stories": [
+    {
+      "category": "tech",
+      "claims": [
+        {
+          "claimId": "claim-preview-harbor-grid-whitepaper",
+          "correctionIds": [],
+          "createdAt": "2026-07-12T06:41:14Z",
+          "editorialState": "reported",
+          "entityKeys": [
+            "subject-harbor-grid-whitepaper"
+          ],
+          "eventKey": "source-report-harbor-grid-whitepaper",
+          "locationKey": "not-location-bound",
+          "objectType": "claim",
+          "riskLevel": "high",
+          "schemaVersion": "livewire.editorial.v2",
+          "storyId": "story-preview-harbor-grid-whitepaper",
+          "supersedesClaimId": null,
+          "text": "Harbor Grid publishes a battery monitoring white paper",
+          "timeEnd": null,
+          "timeStart": "2026-07-12T04:15:27Z",
+          "updatedAt": "2026-07-12T06:41:14Z"
+        }
+      ],
+      "corrections": [],
+      "evidence": [
+        {
+          "attributable": true,
+          "capturedAt": "2026-07-12T06:41:14Z",
+          "claimAgreement": null,
+          "claimId": "claim-preview-harbor-grid-whitepaper",
+          "description": "Frozen source headline retained for the read-only Gate 1 preview.",
+          "entityAgreement": null,
+          "eventAgreement": null,
+          "evidenceId": "evidence-preview-harbor-grid-whitepaper",
+          "locationAgreement": null,
+          "locator": "source headline",
+          "objectType": "evidence",
+          "relation": "context",
+          "schemaVersion": "livewire.editorial.v2",
+          "sourceId": "source-preview-harbor-grid-whitepaper",
+          "targetText": "Harbor Grid publishes a battery monitoring white paper",
+          "timeAgreement": null
+        }
+      ],
+      "receipts": [
+        {
+          "claimId": "claim-preview-harbor-grid-whitepaper",
+          "claimText": "Harbor Grid publishes a battery monitoring white paper",
+          "correctionPath": "/corrections/gate1-preview-harbor-grid-whitepaper/",
+          "corrections": [],
+          "editorialState": "reported",
+          "evidence": [
+            {
+              "attributable": true,
+              "capturedAt": "2026-07-12T06:41:14Z",
+              "claimAgreement": null,
+              "claimId": "claim-preview-harbor-grid-whitepaper",
+              "description": "Frozen source headline retained for the read-only Gate 1 preview.",
+              "entityAgreement": null,
+              "eventAgreement": null,
+              "evidenceId": "evidence-preview-harbor-grid-whitepaper",
+              "locationAgreement": null,
+              "locator": "source headline",
+              "objectType": "evidence",
+              "relation": "context",
+              "schemaVersion": "livewire.editorial.v2",
+              "sourceId": "source-preview-harbor-grid-whitepaper",
+              "targetText": "Harbor Grid publishes a battery monitoring white paper",
+              "timeAgreement": null
+            }
+          ],
+          "firstSeenAt": "2026-07-12T06:41:14Z",
+          "liveWirePublishedAt": null,
+          "objectType": "receipt",
+          "publicationState": "withheld",
+          "receiptId": "receipt-preview-harbor-grid-whitepaper",
+          "reviewer": null,
+          "schemaVersion": "livewire.editorial.v2",
+          "sourcePublishedAt": "2026-07-12T04:15:27Z",
+          "sources": [
+            {
+              "attributable": true,
+              "firstSeenAt": "2026-07-12T06:41:14Z",
+              "independenceKey": "example.invalid:harbor-grid",
+              "name": "Fixture Wire",
+              "objectType": "source",
+              "retrievedAt": "2026-07-12T06:41:14Z",
+              "schemaVersion": "livewire.editorial.v2",
+              "sourceId": "source-preview-harbor-grid-whitepaper",
+              "sourcePublishedAt": "2026-07-12T04:15:27Z",
+              "sourceType": "publisher",
+              "url": "https://example.invalid/harbor-grid-whitepaper"
+            }
+          ],
+          "storyId": "story-preview-harbor-grid-whitepaper",
+          "supersededTexts": [],
+          "updateHistory": [
+            {
+              "at": "2026-07-12T06:41:14Z",
+              "correctionId": null,
+              "publicationState": "withheld",
+              "state": "reported",
+              "summary": "Captured read-only from one public source; truth was not evaluated.",
+              "transitionId": null
+            }
+          ],
+          "updatedAt": "2026-07-12T06:41:14Z",
+          "verification": null
+        }
+      ],
+      "sources": [
+        {
+          "attributable": true,
+          "firstSeenAt": "2026-07-12T06:41:14Z",
+          "independenceKey": "example.invalid:harbor-grid",
+          "name": "Fixture Wire",
+          "objectType": "source",
+          "retrievedAt": "2026-07-12T06:41:14Z",
+          "schemaVersion": "livewire.editorial.v2",
+          "sourceId": "source-preview-harbor-grid-whitepaper",
+          "sourcePublishedAt": "2026-07-12T04:15:27Z",
+          "sourceType": "publisher",
+          "url": "https://example.invalid/harbor-grid-whitepaper"
+        }
+      ],
+      "story": {
+        "breaking": false,
+        "claimIds": [
+          "claim-preview-harbor-grid-whitepaper"
+        ],
+        "correctionIds": [],
+        "correctionPath": "/corrections/gate1-preview-harbor-grid-whitepaper/",
+        "editorialState": "reported",
+        "enteredBreakingAt": null,
+        "evidenceIds": [
+          "evidence-preview-harbor-grid-whitepaper"
+        ],
+        "firstSeenAt": "2026-07-12T06:41:14Z",
+        "highRisk": true,
+        "liveWirePublishedAt": null,
+        "objectType": "story",
+        "publicationState": "withheld",
+        "receiptIds": [
+          "receipt-preview-harbor-grid-whitepaper"
+        ],
+        "schemaVersion": "livewire.editorial.v2",
+        "slug": "preview-harbor-grid-whitepaper",
+        "sourceIds": [
+          "source-preview-harbor-grid-whitepaper"
+        ],
+        "sourcePublishedAt": "2026-07-12T04:15:27Z",
+        "storyId": "story-preview-harbor-grid-whitepaper",
+        "summary": "A source-linked essay captured from the public wire for this read-only preview.",
+        "title": "Harbor Grid publishes a battery monitoring white paper",
+        "transitionIds": [],
+        "updatedAt": "2026-07-12T06:41:14Z",
+        "verificationIds": []
+      },
+      "transitions": [],
+      "verifications": []
+    },
+    {
+      "category": "tech",
+      "claims": [
+        {
+          "claimId": "claim-preview-aster-helix-runtime",
+          "correctionIds": [],
+          "createdAt": "2026-07-12T06:41:14Z",
+          "editorialState": "reported",
+          "entityKeys": [
+            "subject-aster-helix-runtime"
+          ],
+          "eventKey": "source-report-aster-helix-runtime",
+          "locationKey": "not-location-bound",
+          "objectType": "claim",
+          "riskLevel": "high",
+          "schemaVersion": "livewire.editorial.v2",
+          "storyId": "story-preview-aster-helix-runtime",
+          "supersedesClaimId": null,
+          "text": "Aster Labs open-sources the Helix runtime",
+          "timeEnd": null,
+          "timeStart": "2026-07-11T22:38:57Z",
+          "updatedAt": "2026-07-12T06:41:14Z"
+        }
+      ],
+      "corrections": [],
+      "evidence": [
+        {
+          "attributable": true,
+          "capturedAt": "2026-07-12T06:41:14Z",
+          "claimAgreement": null,
+          "claimId": "claim-preview-aster-helix-runtime",
+          "description": "Frozen source headline retained for the read-only Gate 1 preview.",
+          "entityAgreement": null,
+          "eventAgreement": null,
+          "evidenceId": "evidence-preview-aster-helix-runtime",
+          "locationAgreement": null,
+          "locator": "source headline",
+          "objectType": "evidence",
+          "relation": "context",
+          "schemaVersion": "livewire.editorial.v2",
+          "sourceId": "source-preview-aster-helix-runtime",
+          "targetText": "Aster Labs open-sources the Helix runtime",
+          "timeAgreement": null
+        }
+      ],
+      "receipts": [
+        {
+          "claimId": "claim-preview-aster-helix-runtime",
+          "claimText": "Aster Labs open-sources the Helix runtime",
+          "correctionPath": "/corrections/gate1-preview-aster-helix-runtime/",
+          "corrections": [],
+          "editorialState": "reported",
+          "evidence": [
+            {
+              "attributable": true,
+              "capturedAt": "2026-07-12T06:41:14Z",
+              "claimAgreement": null,
+              "claimId": "claim-preview-aster-helix-runtime",
+              "description": "Frozen source headline retained for the read-only Gate 1 preview.",
+              "entityAgreement": null,
+              "eventAgreement": null,
+              "evidenceId": "evidence-preview-aster-helix-runtime",
+              "locationAgreement": null,
+              "locator": "source headline",
+              "objectType": "evidence",
+              "relation": "context",
+              "schemaVersion": "livewire.editorial.v2",
+              "sourceId": "source-preview-aster-helix-runtime",
+              "targetText": "Aster Labs open-sources the Helix runtime",
+              "timeAgreement": null
+            }
+          ],
+          "firstSeenAt": "2026-07-12T06:41:14Z",
+          "liveWirePublishedAt": null,
+          "objectType": "receipt",
+          "publicationState": "withheld",
+          "receiptId": "receipt-preview-aster-helix-runtime",
+          "reviewer": null,
+          "schemaVersion": "livewire.editorial.v2",
+          "sourcePublishedAt": "2026-07-11T22:38:57Z",
+          "sources": [
+            {
+              "attributable": true,
+              "firstSeenAt": "2026-07-12T06:41:14Z",
+              "independenceKey": "example.invalid:aster-labs",
+              "name": "Aster Labs Notes",
+              "objectType": "source",
+              "retrievedAt": "2026-07-12T06:41:14Z",
+              "schemaVersion": "livewire.editorial.v2",
+              "sourceId": "source-preview-aster-helix-runtime",
+              "sourcePublishedAt": "2026-07-11T22:38:57Z",
+              "sourceType": "publisher",
+              "url": "https://example.invalid/aster-helix"
+            }
+          ],
+          "storyId": "story-preview-aster-helix-runtime",
+          "supersededTexts": [],
+          "updateHistory": [
+            {
+              "at": "2026-07-12T06:41:14Z",
+              "correctionId": null,
+              "publicationState": "withheld",
+              "state": "reported",
+              "summary": "Captured read-only from one public source; truth was not evaluated.",
+              "transitionId": null
+            }
+          ],
+          "updatedAt": "2026-07-12T06:41:14Z",
+          "verification": null
+        }
+      ],
+      "sources": [
+        {
+          "attributable": true,
+          "firstSeenAt": "2026-07-12T06:41:14Z",
+          "independenceKey": "example.invalid:aster-labs",
+          "name": "Aster Labs Notes",
+          "objectType": "source",
+          "retrievedAt": "2026-07-12T06:41:14Z",
+          "schemaVersion": "livewire.editorial.v2",
+          "sourceId": "source-preview-aster-helix-runtime",
+          "sourcePublishedAt": "2026-07-11T22:38:57Z",
+          "sourceType": "publisher",
+          "url": "https://example.invalid/aster-helix"
+        }
+      ],
+      "story": {
+        "breaking": false,
+        "claimIds": [
+          "claim-preview-aster-helix-runtime"
+        ],
+        "correctionIds": [],
+        "correctionPath": "/corrections/gate1-preview-aster-helix-runtime/",
+        "editorialState": "reported",
+        "enteredBreakingAt": null,
+        "evidenceIds": [
+          "evidence-preview-aster-helix-runtime"
+        ],
+        "firstSeenAt": "2026-07-12T06:41:14Z",
+        "highRisk": true,
+        "liveWirePublishedAt": null,
+        "objectType": "story",
+        "publicationState": "withheld",
+        "receiptIds": [
+          "receipt-preview-aster-helix-runtime"
+        ],
+        "schemaVersion": "livewire.editorial.v2",
+        "slug": "preview-aster-helix-runtime",
+        "sourceIds": [
+          "source-preview-aster-helix-runtime"
+        ],
+        "sourcePublishedAt": "2026-07-11T22:38:57Z",
+        "storyId": "story-preview-aster-helix-runtime",
+        "summary": "A publisher headline captured from the public wire; Live Wire has not evaluated its truth.",
+        "title": "Aster Labs open-sources the Helix runtime",
+        "transitionIds": [],
+        "updatedAt": "2026-07-12T06:41:14Z",
+        "verificationIds": []
+      },
+      "transitions": [],
+      "verifications": []
+    },
+    {
+      "category": "tech",
+      "claims": [
+        {
+          "claimId": "claim-preview-harbor-console",
+          "correctionIds": [
+            "correction-preview-harbor-console"
+          ],
+          "createdAt": "2026-07-12T06:41:14Z",
+          "editorialState": "corrected",
+          "entityKeys": [
+            "subject-harbor-console"
+          ],
+          "eventKey": "source-report-harbor-console",
+          "locationKey": "not-location-bound",
+          "objectType": "claim",
+          "riskLevel": "high",
+          "schemaVersion": "livewire.editorial.v2",
+          "storyId": "story-preview-harbor-console",
+          "supersedesClaimId": null,
+          "text": "Harbor Grid is an open-source portable games console, designed from scratch",
+          "timeEnd": null,
+          "timeStart": "2026-07-11T21:58:00Z",
+          "updatedAt": "2026-07-12T07:00:00Z"
+        }
+      ],
+      "corrections": [
+        {
+          "claimId": "claim-preview-harbor-console",
+          "correctedText": "Harbor Grid is an open-source portable games console, designed from scratch",
+          "correctionId": "correction-preview-harbor-console",
+          "correctionPath": "/corrections/gate1-preview-harbor-console/",
+          "correctionType": "correction",
+          "evidenceIds": [
+            "evidence-preview-harbor-console-correction"
+          ],
+          "humanReview": {
+            "human": true,
+            "reason": "Compared the frozen source headline with the preview wording in this synthetic fixture.",
+            "reviewedAt": "2026-07-12T06:59:00Z",
+            "reviewerId": "fixture-reviewer-morgan-ellis",
+            "reviewerName": "Morgan Ellis",
+            "reviewerRole": "Synthetic fixture reviewer; no production authority"
+          },
+          "issuedAt": "2026-07-12T07:00:00Z",
+          "objectType": "correction",
+          "priorText": "Harbor Grid is an open-source portable game console, designed from scratch",
+          "reason": "The preview used singular 'game'; the frozen source headline uses 'games'.",
+          "receiptIds": [
+            "receipt-preview-harbor-console"
+          ],
+          "schemaVersion": "livewire.editorial.v2",
+          "storyId": "story-preview-harbor-console",
+          "supersedesCorrectionId": null
+        }
+      ],
+      "evidence": [
+        {
+          "attributable": true,
+          "capturedAt": "2026-07-12T06:41:14Z",
+          "claimAgreement": null,
+          "claimId": "claim-preview-harbor-console",
+          "description": "Superseded Live Wire preview wording retained as contextual comparison.",
+          "entityAgreement": null,
+          "eventAgreement": null,
+          "evidenceId": "evidence-preview-harbor-console",
+          "locationAgreement": null,
+          "locator": "preview capture wording; not a source quotation",
+          "objectType": "evidence",
+          "relation": "context",
+          "schemaVersion": "livewire.editorial.v2",
+          "sourceId": "source-preview-harbor-console",
+          "targetText": "Harbor Grid is an open-source portable game console, designed from scratch",
+          "timeAgreement": null
+        },
+        {
+          "attributable": true,
+          "capturedAt": "2026-07-12T06:58:00Z",
+          "claimAgreement": true,
+          "claimId": "claim-preview-harbor-console",
+          "description": "Frozen source headline supporting the exact corrected preview wording.",
+          "entityAgreement": true,
+          "eventAgreement": true,
+          "evidenceId": "evidence-preview-harbor-console-correction",
+          "locationAgreement": true,
+          "locator": "source headline",
+          "objectType": "evidence",
+          "relation": "supports",
+          "schemaVersion": "livewire.editorial.v2",
+          "sourceId": "source-preview-harbor-console",
+          "targetText": "Harbor Grid is an open-source portable games console, designed from scratch",
+          "timeAgreement": true
+        }
+      ],
+      "receipts": [
+        {
+          "claimId": "claim-preview-harbor-console",
+          "claimText": "Harbor Grid is an open-source portable games console, designed from scratch",
+          "correctionPath": "/corrections/gate1-preview-harbor-console/",
+          "corrections": [
+            {
+              "claimId": "claim-preview-harbor-console",
+              "correctedText": "Harbor Grid is an open-source portable games console, designed from scratch",
+              "correctionId": "correction-preview-harbor-console",
+              "correctionPath": "/corrections/gate1-preview-harbor-console/",
+              "correctionType": "correction",
+              "evidenceIds": [
+                "evidence-preview-harbor-console-correction"
+              ],
+              "humanReview": {
+                "human": true,
+                "reason": "Compared the frozen source headline with the preview wording in this synthetic fixture.",
+                "reviewedAt": "2026-07-12T06:59:00Z",
+                "reviewerId": "fixture-reviewer-morgan-ellis",
+                "reviewerName": "Morgan Ellis",
+                "reviewerRole": "Synthetic fixture reviewer; no production authority"
+              },
+              "issuedAt": "2026-07-12T07:00:00Z",
+              "objectType": "correction",
+              "priorText": "Harbor Grid is an open-source portable game console, designed from scratch",
+              "reason": "The preview used singular 'game'; the frozen source headline uses 'games'.",
+              "receiptIds": [
+                "receipt-preview-harbor-console"
+              ],
+              "schemaVersion": "livewire.editorial.v2",
+              "storyId": "story-preview-harbor-console",
+              "supersedesCorrectionId": null
+            }
+          ],
+          "editorialState": "corrected",
+          "evidence": [
+            {
+              "attributable": true,
+              "capturedAt": "2026-07-12T06:41:14Z",
+              "claimAgreement": null,
+              "claimId": "claim-preview-harbor-console",
+              "description": "Superseded Live Wire preview wording retained as contextual comparison.",
+              "entityAgreement": null,
+              "eventAgreement": null,
+              "evidenceId": "evidence-preview-harbor-console",
+              "locationAgreement": null,
+              "locator": "preview capture wording; not a source quotation",
+              "objectType": "evidence",
+              "relation": "context",
+              "schemaVersion": "livewire.editorial.v2",
+              "sourceId": "source-preview-harbor-console",
+              "targetText": "Harbor Grid is an open-source portable game console, designed from scratch",
+              "timeAgreement": null
+            },
+            {
+              "attributable": true,
+              "capturedAt": "2026-07-12T06:58:00Z",
+              "claimAgreement": true,
+              "claimId": "claim-preview-harbor-console",
+              "description": "Frozen source headline supporting the exact corrected preview wording.",
+              "entityAgreement": true,
+              "eventAgreement": true,
+              "evidenceId": "evidence-preview-harbor-console-correction",
+              "locationAgreement": true,
+              "locator": "source headline",
+              "objectType": "evidence",
+              "relation": "supports",
+              "schemaVersion": "livewire.editorial.v2",
+              "sourceId": "source-preview-harbor-console",
+              "targetText": "Harbor Grid is an open-source portable games console, designed from scratch",
+              "timeAgreement": true
+            }
+          ],
+          "firstSeenAt": "2026-07-12T06:41:14Z",
+          "liveWirePublishedAt": null,
+          "objectType": "receipt",
+          "publicationState": "withheld",
+          "receiptId": "receipt-preview-harbor-console",
+          "reviewer": {
+            "human": true,
+            "reason": "Compared the frozen source headline with the preview wording in this synthetic fixture.",
+            "reviewedAt": "2026-07-12T06:59:00Z",
+            "reviewerId": "fixture-reviewer-morgan-ellis",
+            "reviewerName": "Morgan Ellis",
+            "reviewerRole": "Synthetic fixture reviewer; no production authority"
+          },
+          "schemaVersion": "livewire.editorial.v2",
+          "sourcePublishedAt": "2026-07-11T21:58:00Z",
+          "sources": [
+            {
+              "attributable": true,
+              "firstSeenAt": "2026-07-12T06:41:14Z",
+              "independenceKey": "example.invalid:harbor-console",
+              "name": "Harbor Grid Repository",
+              "objectType": "source",
+              "retrievedAt": "2026-07-12T06:41:14Z",
+              "schemaVersion": "livewire.editorial.v2",
+              "sourceId": "source-preview-harbor-console",
+              "sourcePublishedAt": "2026-07-11T21:58:00Z",
+              "sourceType": "publisher",
+              "url": "https://example.invalid/harbor-console"
+            }
+          ],
+          "storyId": "story-preview-harbor-console",
+          "supersededTexts": [
+            "Harbor Grid is an open-source portable game console, designed from scratch"
+          ],
+          "updateHistory": [
+            {
+              "at": "2026-07-12T06:41:14Z",
+              "correctionId": null,
+              "publicationState": "withheld",
+              "state": "reported",
+              "summary": "Captured read-only from one public source; truth was not evaluated.",
+              "transitionId": null
+            },
+            {
+              "at": "2026-07-12T07:00:00Z",
+              "correctionId": "correction-preview-harbor-console",
+              "publicationState": "withheld",
+              "state": "corrected",
+              "summary": "The preview used singular 'game'; the frozen source headline uses 'games'.",
+              "transitionId": "transition-preview-harbor-console-correction"
+            }
+          ],
+          "updatedAt": "2026-07-12T07:00:00Z",
+          "verification": null
+        }
+      ],
+      "sources": [
+        {
+          "attributable": true,
+          "firstSeenAt": "2026-07-12T06:41:14Z",
+          "independenceKey": "example.invalid:harbor-console",
+          "name": "Harbor Grid Repository",
+          "objectType": "source",
+          "retrievedAt": "2026-07-12T06:41:14Z",
+          "schemaVersion": "livewire.editorial.v2",
+          "sourceId": "source-preview-harbor-console",
+          "sourcePublishedAt": "2026-07-11T21:58:00Z",
+          "sourceType": "publisher",
+          "url": "https://example.invalid/harbor-console"
+        }
+      ],
+      "story": {
+        "breaking": false,
+        "claimIds": [
+          "claim-preview-harbor-console"
+        ],
+        "correctionIds": [
+          "correction-preview-harbor-console"
+        ],
+        "correctionPath": "/corrections/gate1-preview-harbor-console/",
+        "editorialState": "corrected",
+        "enteredBreakingAt": null,
+        "evidenceIds": [
+          "evidence-preview-harbor-console",
+          "evidence-preview-harbor-console-correction"
+        ],
+        "firstSeenAt": "2026-07-12T06:41:14Z",
+        "highRisk": true,
+        "liveWirePublishedAt": null,
+        "objectType": "story",
+        "publicationState": "withheld",
+        "receiptIds": [
+          "receipt-preview-harbor-console"
+        ],
+        "schemaVersion": "livewire.editorial.v2",
+        "slug": "preview-harbor-console",
+        "sourceIds": [
+          "source-preview-harbor-console"
+        ],
+        "sourcePublishedAt": "2026-07-11T21:58:00Z",
+        "storyId": "story-preview-harbor-console",
+        "summary": "A project headline preserved with an attributable Live Wire wording correction.",
+        "title": "Harbor Grid is an open-source portable games console, designed from scratch",
+        "transitionIds": [
+          "transition-preview-harbor-console-correction"
+        ],
+        "updatedAt": "2026-07-12T07:00:00Z",
+        "verificationIds": []
+      },
+      "transitions": [
+        {
+          "action": "correct",
+          "claimIds": [
+            "claim-preview-harbor-console"
+          ],
+          "correctionPath": "/corrections/gate1-preview-harbor-console/",
+          "evidenceIds": [
+            "evidence-preview-harbor-console-correction"
+          ],
+          "fromEditorialState": "reported",
+          "fromPublicationState": "withheld",
+          "highRisk": true,
+          "humanReview": {
+            "human": true,
+            "reason": "Compared the frozen source headline with the preview wording in this synthetic fixture.",
+            "reviewedAt": "2026-07-12T06:59:00Z",
+            "reviewerId": "fixture-reviewer-morgan-ellis",
+            "reviewerName": "Morgan Ellis",
+            "reviewerRole": "Synthetic fixture reviewer; no production authority"
+          },
+          "objectType": "editorial_transition",
+          "occurredAt": "2026-07-12T07:00:00Z",
+          "reason": "Issued an attributable wording correction and preserved the superseded text.",
+          "schemaVersion": "livewire.editorial.v2",
+          "storyId": "story-preview-harbor-console",
+          "toEditorialState": "corrected",
+          "toPublicationState": "withheld",
+          "transitionId": "transition-preview-harbor-console-correction",
+          "verificationIds": []
+        }
+      ],
+      "verifications": []
+    }
+  ]
+}

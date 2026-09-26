@@ -1,0 +1,895 @@
+{
+  "$defs": {
+    "Correction": {
+      "additionalProperties": false,
+      "properties": {
+        "claimId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Claimid",
+          "type": "string"
+        },
+        "correctedText": {
+          "anyOf": [
+            {
+              "maxLength": 20000,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Correctedtext"
+        },
+        "correctionId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Correctionid",
+          "type": "string"
+        },
+        "correctionPath": {
+          "title": "Correctionpath",
+          "type": "string"
+        },
+        "correctionType": {
+          "$ref": "#/$defs/CorrectionType"
+        },
+        "evidenceIds": {
+          "items": {
+            "maxLength": 128,
+            "minLength": 3,
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+            "type": "string"
+          },
+          "maxItems": 5000,
+          "minItems": 1,
+          "title": "Evidenceids",
+          "type": "array"
+        },
+        "humanReview": {
+          "$ref": "#/$defs/HumanReview"
+        },
+        "issuedAt": {
+          "format": "date-time",
+          "title": "Issuedat",
+          "type": "string"
+        },
+        "objectType": {
+          "const": "correction",
+          "title": "Objecttype",
+          "type": "string"
+        },
+        "priorText": {
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Priortext",
+          "type": "string"
+        },
+        "reason": {
+          "maxLength": 4000,
+          "minLength": 12,
+          "title": "Reason",
+          "type": "string"
+        },
+        "receiptIds": {
+          "items": {
+            "maxLength": 128,
+            "minLength": 3,
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+            "type": "string"
+          },
+          "maxItems": 1000,
+          "minItems": 1,
+          "title": "Receiptids",
+          "type": "array"
+        },
+        "schemaVersion": {
+          "const": "livewire.editorial.v1",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "storyId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Storyid",
+          "type": "string"
+        },
+        "supersedesCorrectionId": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "minLength": 3,
+              "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Supersedescorrectionid"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "objectType",
+        "correctionId",
+        "storyId",
+        "claimId",
+        "receiptIds",
+        "evidenceIds",
+        "correctionType",
+        "priorText",
+        "correctedText",
+        "reason",
+        "issuedAt",
+        "humanReview",
+        "correctionPath",
+        "supersedesCorrectionId"
+      ],
+      "title": "Correction",
+      "type": "object"
+    },
+    "CorrectionType": {
+      "enum": [
+        "correction",
+        "clarification",
+        "retraction"
+      ],
+      "title": "CorrectionType",
+      "type": "string"
+    },
+    "CorroborationRule": {
+      "enum": [
+        "insufficient",
+        "official_primary",
+        "two_independent"
+      ],
+      "title": "CorroborationRule",
+      "type": "string"
+    },
+    "EditorialState": {
+      "enum": [
+        "draft",
+        "reported",
+        "developing",
+        "confirmed",
+        "corrected",
+        "retracted"
+      ],
+      "title": "EditorialState",
+      "type": "string"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "attributable": {
+          "title": "Attributable",
+          "type": "boolean"
+        },
+        "capturedAt": {
+          "format": "date-time",
+          "title": "Capturedat",
+          "type": "string"
+        },
+        "claimAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Claimagreement"
+        },
+        "claimId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Claimid",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "entityAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Entityagreement"
+        },
+        "eventAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Eventagreement"
+        },
+        "evidenceId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Evidenceid",
+          "type": "string"
+        },
+        "locationAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Locationagreement"
+        },
+        "locator": {
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Locator",
+          "type": "string"
+        },
+        "objectType": {
+          "const": "evidence",
+          "title": "Objecttype",
+          "type": "string"
+        },
+        "relation": {
+          "$ref": "#/$defs/EvidenceRelation"
+        },
+        "schemaVersion": {
+          "const": "livewire.editorial.v1",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "sourceId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Sourceid",
+          "type": "string"
+        },
+        "timeAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Timeagreement"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "objectType",
+        "evidenceId",
+        "claimId",
+        "sourceId",
+        "relation",
+        "description",
+        "locator",
+        "capturedAt",
+        "attributable",
+        "claimAgreement",
+        "eventAgreement",
+        "entityAgreement",
+        "locationAgreement",
+        "timeAgreement"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "EvidenceRelation": {
+      "enum": [
+        "supports",
+        "refutes",
+        "context"
+      ],
+      "title": "EvidenceRelation",
+      "type": "string"
+    },
+    "HumanReview": {
+      "additionalProperties": false,
+      "properties": {
+        "human": {
+          "const": true,
+          "title": "Human",
+          "type": "boolean"
+        },
+        "reason": {
+          "maxLength": 4000,
+          "minLength": 12,
+          "title": "Reason",
+          "type": "string"
+        },
+        "reviewedAt": {
+          "format": "date-time",
+          "title": "Reviewedat",
+          "type": "string"
+        },
+        "reviewerId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Reviewerid",
+          "type": "string"
+        },
+        "reviewerName": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Reviewername",
+          "type": "string"
+        },
+        "reviewerRole": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Reviewerrole",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reviewerId",
+        "reviewerName",
+        "reviewerRole",
+        "human",
+        "reviewedAt",
+        "reason"
+      ],
+      "title": "HumanReview",
+      "type": "object"
+    },
+    "PublicationState": {
+      "enum": [
+        "withheld",
+        "published",
+        "globally_promoted"
+      ],
+      "title": "PublicationState",
+      "type": "string"
+    },
+    "ReceiptUpdate": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "format": "date-time",
+          "title": "At",
+          "type": "string"
+        },
+        "correctionId": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "minLength": 3,
+              "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Correctionid"
+        },
+        "publicationState": {
+          "$ref": "#/$defs/PublicationState"
+        },
+        "state": {
+          "$ref": "#/$defs/EditorialState"
+        },
+        "summary": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        },
+        "transitionId": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "minLength": 3,
+              "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Transitionid"
+        }
+      },
+      "required": [
+        "state",
+        "publicationState",
+        "at",
+        "summary",
+        "transitionId",
+        "correctionId"
+      ],
+      "title": "ReceiptUpdate",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "attributable": {
+          "title": "Attributable",
+          "type": "boolean"
+        },
+        "firstSeenAt": {
+          "format": "date-time",
+          "title": "Firstseenat",
+          "type": "string"
+        },
+        "independenceKey": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Independencekey",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "objectType": {
+          "const": "source",
+          "title": "Objecttype",
+          "type": "string"
+        },
+        "retrievedAt": {
+          "format": "date-time",
+          "title": "Retrievedat",
+          "type": "string"
+        },
+        "schemaVersion": {
+          "const": "livewire.editorial.v1",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "sourceId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Sourceid",
+          "type": "string"
+        },
+        "sourcePublishedAt": {
+          "format": "date-time",
+          "title": "Sourcepublishedat",
+          "type": "string"
+        },
+        "sourceType": {
+          "$ref": "#/$defs/SourceType"
+        },
+        "url": {
+          "maxLength": 2048,
+          "minLength": 10,
+          "pattern": "^https?://[^\\s]+$",
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "objectType",
+        "sourceId",
+        "name",
+        "url",
+        "sourceType",
+        "independenceKey",
+        "attributable",
+        "sourcePublishedAt",
+        "firstSeenAt",
+        "retrievedAt"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "SourceType": {
+      "enum": [
+        "official_primary",
+        "primary",
+        "newswire",
+        "publisher",
+        "document",
+        "eyewitness",
+        "social",
+        "other"
+      ],
+      "title": "SourceType",
+      "type": "string"
+    },
+    "Verification": {
+      "additionalProperties": false,
+      "properties": {
+        "claimAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Claimagreement"
+        },
+        "claimId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Claimid",
+          "type": "string"
+        },
+        "correctionPath": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Correctionpath"
+        },
+        "corroboration": {
+          "$ref": "#/$defs/CorroborationRule"
+        },
+        "entityAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Entityagreement"
+        },
+        "eventAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Eventagreement"
+        },
+        "evidenceIds": {
+          "items": {
+            "maxLength": 128,
+            "minLength": 3,
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+            "type": "string"
+          },
+          "maxItems": 1000,
+          "minItems": 1,
+          "title": "Evidenceids",
+          "type": "array"
+        },
+        "humanReview": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HumanReview"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "independentSourceCount": {
+          "minimum": 0,
+          "title": "Independentsourcecount",
+          "type": "integer"
+        },
+        "lexicalOverlapOnly": {
+          "title": "Lexicaloverlaponly",
+          "type": "boolean"
+        },
+        "locationAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Locationagreement"
+        },
+        "objectType": {
+          "const": "verification",
+          "title": "Objecttype",
+          "type": "string"
+        },
+        "officialPrimarySourceId": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "minLength": 3,
+              "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Officialprimarysourceid"
+        },
+        "outcome": {
+          "$ref": "#/$defs/VerificationOutcome"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "maxLength": 4000,
+              "minLength": 12,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "schemaVersion": {
+          "const": "livewire.editorial.v1",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "timeAgreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Timeagreement"
+        },
+        "verificationId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Verificationid",
+          "type": "string"
+        },
+        "verifiedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Verifiedat"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "objectType",
+        "verificationId",
+        "claimId",
+        "outcome",
+        "evidenceIds",
+        "claimAgreement",
+        "eventAgreement",
+        "entityAgreement",
+        "locationAgreement",
+        "timeAgreement",
+        "corroboration",
+        "independentSourceCount",
+        "officialPrimarySourceId",
+        "lexicalOverlapOnly",
+        "humanReview",
+        "verifiedAt",
+        "reason",
+        "correctionPath"
+      ],
+      "title": "Verification",
+      "type": "object"
+    },
+    "VerificationOutcome": {
+      "enum": [
+        "unverified",
+        "inconclusive",
+        "supported",
+        "refuted"
+      ],
+      "title": "VerificationOutcome",
+      "type": "string"
+    }
+  },
+  "$id": "https://livewire.show/schemas/editorial/v1/receipt.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "claimId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Claimid",
+      "type": "string"
+    },
+    "claimText": {
+      "maxLength": 20000,
+      "minLength": 1,
+      "title": "Claimtext",
+      "type": "string"
+    },
+    "correctionPath": {
+      "title": "Correctionpath",
+      "type": "string"
+    },
+    "corrections": {
+      "items": {
+        "$ref": "#/$defs/Correction"
+      },
+      "maxItems": 1000,
+      "title": "Corrections",
+      "type": "array"
+    },
+    "editorialState": {
+      "$ref": "#/$defs/EditorialState"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "maxItems": 1000,
+      "minItems": 1,
+      "title": "Evidence",
+      "type": "array"
+    },
+    "firstSeenAt": {
+      "format": "date-time",
+      "title": "Firstseenat",
+      "type": "string"
+    },
+    "liveWirePublishedAt": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Livewirepublishedat"
+    },
+    "objectType": {
+      "const": "receipt",
+      "title": "Objecttype",
+      "type": "string"
+    },
+    "publicationState": {
+      "$ref": "#/$defs/PublicationState"
+    },
+    "receiptId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Receiptid",
+      "type": "string"
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/HumanReview"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schemaVersion": {
+      "const": "livewire.editorial.v1",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "sourcePublishedAt": {
+      "format": "date-time",
+      "title": "Sourcepublishedat",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "storyId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Storyid",
+      "type": "string"
+    },
+    "supersededTexts": {
+      "items": {
+        "maxLength": 20000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "title": "Supersededtexts",
+      "type": "array"
+    },
+    "updateHistory": {
+      "items": {
+        "$ref": "#/$defs/ReceiptUpdate"
+      },
+      "maxItems": 5000,
+      "minItems": 1,
+      "title": "Updatehistory",
+      "type": "array"
+    },
+    "updatedAt": {
+      "format": "date-time",
+      "title": "Updatedat",
+      "type": "string"
+    },
+    "verification": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Verification"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "objectType",
+    "receiptId",
+    "storyId",
+    "claimId",
+    "claimText",
+    "editorialState",
+    "publicationState",
+    "sources",
+    "evidence",
+    "verification",
+    "reviewer",
+    "sourcePublishedAt",
+    "firstSeenAt",
+    "liveWirePublishedAt",
+    "updatedAt",
+    "updateHistory",
+    "corrections",
+    "supersededTexts",
+    "correctionPath"
+  ],
+  "title": "Receipt",
+  "type": "object",
+  "x-livewire-schema-version": "livewire.editorial.v1"
+}

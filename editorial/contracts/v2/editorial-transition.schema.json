@@ -1,0 +1,217 @@
+{
+  "$defs": {
+    "EditorialState": {
+      "enum": [
+        "draft",
+        "reported",
+        "developing",
+        "confirmed",
+        "corrected",
+        "retracted"
+      ],
+      "title": "EditorialState",
+      "type": "string"
+    },
+    "HumanReview": {
+      "additionalProperties": false,
+      "properties": {
+        "human": {
+          "const": true,
+          "title": "Human",
+          "type": "boolean"
+        },
+        "reason": {
+          "maxLength": 4000,
+          "minLength": 12,
+          "title": "Reason",
+          "type": "string"
+        },
+        "reviewedAt": {
+          "format": "date-time",
+          "title": "Reviewedat",
+          "type": "string"
+        },
+        "reviewerId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Reviewerid",
+          "type": "string"
+        },
+        "reviewerName": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Reviewername",
+          "type": "string"
+        },
+        "reviewerRole": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Reviewerrole",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reviewerId",
+        "reviewerName",
+        "reviewerRole",
+        "human",
+        "reviewedAt",
+        "reason"
+      ],
+      "title": "HumanReview",
+      "type": "object"
+    },
+    "PublicationState": {
+      "enum": [
+        "withheld",
+        "published",
+        "globally_promoted"
+      ],
+      "title": "PublicationState",
+      "type": "string"
+    },
+    "TransitionAction": {
+      "enum": [
+        "report",
+        "develop",
+        "confirm",
+        "correct",
+        "retract",
+        "publish",
+        "global_promote"
+      ],
+      "title": "TransitionAction",
+      "type": "string"
+    }
+  },
+  "$id": "https://livewire.show/schemas/editorial/v2/editorial-transition.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "$ref": "#/$defs/TransitionAction"
+    },
+    "claimIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "minItems": 1,
+      "title": "Claimids",
+      "type": "array"
+    },
+    "correctionPath": {
+      "title": "Correctionpath",
+      "type": "string"
+    },
+    "evidenceIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 5000,
+      "title": "Evidenceids",
+      "type": "array"
+    },
+    "fromEditorialState": {
+      "$ref": "#/$defs/EditorialState"
+    },
+    "fromPublicationState": {
+      "$ref": "#/$defs/PublicationState"
+    },
+    "highRisk": {
+      "title": "Highrisk",
+      "type": "boolean"
+    },
+    "humanReview": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/HumanReview"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "objectType": {
+      "const": "editorial_transition",
+      "title": "Objecttype",
+      "type": "string"
+    },
+    "occurredAt": {
+      "format": "date-time",
+      "title": "Occurredat",
+      "type": "string"
+    },
+    "reason": {
+      "maxLength": 4000,
+      "minLength": 12,
+      "title": "Reason",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "livewire.editorial.v2",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "storyId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Storyid",
+      "type": "string"
+    },
+    "toEditorialState": {
+      "$ref": "#/$defs/EditorialState"
+    },
+    "toPublicationState": {
+      "$ref": "#/$defs/PublicationState"
+    },
+    "transitionId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Transitionid",
+      "type": "string"
+    },
+    "verificationIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "title": "Verificationids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "objectType",
+    "transitionId",
+    "storyId",
+    "claimIds",
+    "action",
+    "fromEditorialState",
+    "toEditorialState",
+    "fromPublicationState",
+    "toPublicationState",
+    "evidenceIds",
+    "verificationIds",
+    "humanReview",
+    "occurredAt",
+    "reason",
+    "correctionPath",
+    "highRisk"
+  ],
+  "title": "EditorialTransition",
+  "type": "object",
+  "x-livewire-schema-version": "livewire.editorial.v2"
+}

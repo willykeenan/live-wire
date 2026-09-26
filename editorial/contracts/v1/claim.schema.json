@@ -1,0 +1,162 @@
+{
+  "$defs": {
+    "EditorialState": {
+      "enum": [
+        "draft",
+        "reported",
+        "developing",
+        "confirmed",
+        "corrected",
+        "retracted"
+      ],
+      "title": "EditorialState",
+      "type": "string"
+    },
+    "RiskLevel": {
+      "enum": [
+        "standard",
+        "high"
+      ],
+      "title": "RiskLevel",
+      "type": "string"
+    }
+  },
+  "$id": "https://livewire.show/schemas/editorial/v1/claim.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "claimId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Claimid",
+      "type": "string"
+    },
+    "correctionIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "title": "Correctionids",
+      "type": "array"
+    },
+    "createdAt": {
+      "format": "date-time",
+      "title": "Createdat",
+      "type": "string"
+    },
+    "editorialState": {
+      "$ref": "#/$defs/EditorialState"
+    },
+    "entityKeys": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Entitykeys",
+      "type": "array"
+    },
+    "eventKey": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Eventkey",
+      "type": "string"
+    },
+    "locationKey": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Locationkey",
+      "type": "string"
+    },
+    "objectType": {
+      "const": "claim",
+      "title": "Objecttype",
+      "type": "string"
+    },
+    "riskLevel": {
+      "$ref": "#/$defs/RiskLevel"
+    },
+    "schemaVersion": {
+      "const": "livewire.editorial.v1",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "storyId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Storyid",
+      "type": "string"
+    },
+    "supersedesClaimId": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Supersedesclaimid"
+    },
+    "text": {
+      "maxLength": 20000,
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    },
+    "timeEnd": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Timeend"
+    },
+    "timeStart": {
+      "format": "date-time",
+      "title": "Timestart",
+      "type": "string"
+    },
+    "updatedAt": {
+      "format": "date-time",
+      "title": "Updatedat",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "objectType",
+    "claimId",
+    "storyId",
+    "text",
+    "editorialState",
+    "riskLevel",
+    "eventKey",
+    "entityKeys",
+    "locationKey",
+    "timeStart",
+    "timeEnd",
+    "createdAt",
+    "updatedAt",
+    "supersedesClaimId",
+    "correctionIds"
+  ],
+  "title": "Claim",
+  "type": "object",
+  "x-livewire-schema-version": "livewire.editorial.v1"
+}

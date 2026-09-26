@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Correction: automated rumor confirmations — Live Wire</title>
+<meta name="description" content="Live Wire correction and remediation note for automated rumor confirmation and lead-time claims, published July 11, 2026."/>
+<link rel="icon" href="/logo.svg"/>
+<style>
+  :root{
+    --bg:#0E1117;--panel:#161B22;--panel2:#1B212B;--bord:#2E3742;
+    --tx:#E6EAF0;--tx2:#AAB3C0;--tx3:#737E8C;--amber:#EF9F27;--blue:#9FCBFF;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+    --serif:ui-serif,Georgia,Cambria,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--sans);line-height:1.7;padding-bottom:48px}
+  a{color:var(--blue);text-underline-offset:3px}
+  header{border-bottom:1px solid #232A33;background:rgba(14,17,23,.93);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10}
+  .bar{max-width:940px;margin:0 auto;padding:0 22px;height:66px;display:flex;align-items:center;gap:11px}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--tx);font-size:17px;font-weight:750;text-decoration:none}
+  .brand img{width:30px;height:30px;border-radius:8px}
+  .alpha{margin-left:auto;color:#F0C780;font-size:10.5px;font-weight:750;letter-spacing:.8px;text-transform:uppercase}
+  main{max-width:760px;margin:0 auto;padding:64px 22px 88px}
+  .eyebrow{color:#F0C780;font-size:11px;font-weight:750;letter-spacing:1.15px;text-transform:uppercase}
+  h1{font-family:var(--serif);font-size:clamp(36px,6vw,60px);line-height:1.05;letter-spacing:-1.4px;margin:18px 0 18px;font-weight:700}
+  .dek{color:var(--tx2);font-size:clamp(17px,2.4vw,21px);line-height:1.55;margin:0 0 24px}
+  .date{font-size:12px;color:var(--tx3);border-bottom:1px solid #232A33;padding-bottom:24px;margin-bottom:34px}
+  .notice{background:linear-gradient(145deg,rgba(239,159,39,.09),var(--panel));border:1px solid #5c4516;border-radius:15px;padding:20px 22px;margin:0 0 34px}
+  .notice strong{display:block;color:#F0C780;font-size:11px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px}
+  .notice p{margin:0;color:var(--tx2);font-size:14px}
+  h2{font-size:20px;letter-spacing:-.2px;margin:38px 0 10px}
+  p{color:var(--tx2);font-size:16px;margin:0 0 18px}
+  ul{margin:10px 0 22px;padding-left:22px;color:var(--tx2)}
+  li{padding-left:5px;margin:8px 0}
+  .metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 30px}
+  .metric{background:var(--panel);border:1px solid #232A33;border-radius:13px;padding:18px}
+  .metric b{display:block;font-size:25px;line-height:1.1;color:var(--tx);margin-bottom:6px}
+  .metric span{display:block;color:var(--tx3);font-size:12px;line-height:1.45}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:38px;padding-top:28px;border-top:1px solid #232A33}
+  .btn{display:inline-flex;padding:10px 14px;border-radius:9px;border:1px solid var(--bord);background:var(--panel2);color:var(--tx);font-size:13px;font-weight:650;text-decoration:none}
+  .btn:hover{border-color:#526070}
+  .trustbar{position:fixed;left:0;right:0;bottom:0;z-index:20;min-height:40px;padding:8px 16px;background:rgba(12,16,20,.97);
+            border-top:1px solid var(--bord);color:var(--tx3);font-size:11px;line-height:1.4;text-align:center;backdrop-filter:blur(10px)}
+  .trustbar strong{color:#F0C780;letter-spacing:.7px;margin-right:7px}
+  @media(max-width:600px){main{padding-top:42px}.metrics{grid-template-columns:1fr}.bar{height:58px;padding:0 16px}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <a class="brand" href="/"><img src="/logo.svg" alt=""/>live wire</a>
+  <span class="alpha">Public alpha correction</span>
+</div></header>
+
+<main>
+  <div class="eyebrow">Corrections · Editorial systems</div>
+  <h1>Correction: automated rumor confirmations</h1>
+  <p class="dek">Earlier alpha builds displayed automated confirmation and lead-time claims that did not meet Live Wire's evidence standard.</p>
+  <div class="date">Published July 11, 2026 · K&amp;E Studios</div>
+
+  <aside class="notice">
+    <strong>Current status</strong>
+    <p>The public Rumor Desk, automated publication and rumor-to-headline promotion are disabled. The prior ledger is quarantined from public output while the system is rebuilt.</p>
+  </aside>
+
+  <h2>What was wrong</h2>
+  <p>The system could treat loose word overlap between an earlier rumor and a later article as sufficient support, without proving that the two described the same event. It could then display an automated confirmation label and claim Live Wire had identified the story first.</p>
+  <p>That logic was not reliable enough for publication. In several cases, the article used as support had been published before Live Wire's own tracked first-seen timestamp. A lead-time claim in that circumstance is invalid.</p>
+
+  <div class="metrics" aria-label="July 11 review findings">
+    <div class="metric"><b>119 of 120</b><span>records in the frozen pre-containment ledger carried an automated confirmation status — a rate that itself warranted immediate containment.</span></div>
+    <div class="metric"><b>At least 57</b><span>supporting articles in that frozen review predated Live Wire's tracked first-seen time, invalidating the associated early-call framing.</span></div>
+  </div>
+
+  <p>We are not repeating the underlying rumor claims here because doing so would unnecessarily republish material that has not passed verification.</p>
+
+  <h2>What changed immediately</h2>
+  <ul>
+    <li>Removed automated confirmation, lead-time and “called first” presentation from public surfaces.</li>
+    <li>Disabled public rumor scanning, scoring, publication and promotion controls.</li>
+    <li>Prevented rumor records from entering the public headline or visual-preview path.</li>
+    <li>Quarantined the prior rumor ledger so it cannot repopulate the public interface.</li>
+    <li>Placed the public viewer and generated audio in a fail-closed state while containment is verified.</li>
+  </ul>
+
+  <h2>What must be true before the desk returns</h2>
+  <p>A future rumor product will need event-level identity checks, dated source provenance, independent corroboration rules, explicit uncertainty, separation between machine suggestions and editorial decisions, and a durable audit and corrections trail. Passing automated tests is necessary; accountable editorial review is also required.</p>
+
+  <h2>Our standard</h2>
+  <p>Corrections are part of the product, not an embarrassment to hide. When Live Wire materially overstates what it knows, the right response is to stop the unsafe behavior, explain the failure plainly, preserve evidence and earn the feature back.</p>
+
+  <div class="actions">
+    <a class="btn" href="/">Return to Live Wire</a>
+    <a class="btn" href="/live">View alpha status</a>
+  </div>
+</main>
+
+<aside class="trustbar"><strong>PUBLIC ALPHA</strong> AI-generated presentation · satire · verify at linked public sources · not financial advice</aside>
+</body>
+</html>

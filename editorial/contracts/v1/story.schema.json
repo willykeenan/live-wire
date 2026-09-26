@@ -1,0 +1,232 @@
+{
+  "$defs": {
+    "EditorialState": {
+      "enum": [
+        "draft",
+        "reported",
+        "developing",
+        "confirmed",
+        "corrected",
+        "retracted"
+      ],
+      "title": "EditorialState",
+      "type": "string"
+    },
+    "PublicationState": {
+      "enum": [
+        "withheld",
+        "published",
+        "globally_promoted"
+      ],
+      "title": "PublicationState",
+      "type": "string"
+    }
+  },
+  "$id": "https://livewire.show/schemas/editorial/v1/story.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "breaking": {
+      "title": "Breaking",
+      "type": "boolean"
+    },
+    "claimIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "minItems": 1,
+      "title": "Claimids",
+      "type": "array"
+    },
+    "correctionIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "title": "Correctionids",
+      "type": "array"
+    },
+    "correctionPath": {
+      "title": "Correctionpath",
+      "type": "string"
+    },
+    "editorialState": {
+      "$ref": "#/$defs/EditorialState"
+    },
+    "enteredBreakingAt": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Enteredbreakingat"
+    },
+    "evidenceIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 5000,
+      "minItems": 1,
+      "title": "Evidenceids",
+      "type": "array"
+    },
+    "firstSeenAt": {
+      "format": "date-time",
+      "title": "Firstseenat",
+      "type": "string"
+    },
+    "highRisk": {
+      "title": "Highrisk",
+      "type": "boolean"
+    },
+    "liveWirePublishedAt": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Livewirepublishedat"
+    },
+    "objectType": {
+      "const": "story",
+      "title": "Objecttype",
+      "type": "string"
+    },
+    "publicationState": {
+      "$ref": "#/$defs/PublicationState"
+    },
+    "receiptIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "minItems": 1,
+      "title": "Receiptids",
+      "type": "array"
+    },
+    "schemaVersion": {
+      "const": "livewire.editorial.v1",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "slug": {
+      "maxLength": 160,
+      "minLength": 3,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "title": "Slug",
+      "type": "string"
+    },
+    "sourceIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "minItems": 1,
+      "title": "Sourceids",
+      "type": "array"
+    },
+    "sourcePublishedAt": {
+      "format": "date-time",
+      "title": "Sourcepublishedat",
+      "type": "string"
+    },
+    "storyId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Storyid",
+      "type": "string"
+    },
+    "summary": {
+      "maxLength": 20000,
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "transitionIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 5000,
+      "title": "Transitionids",
+      "type": "array"
+    },
+    "updatedAt": {
+      "format": "date-time",
+      "title": "Updatedat",
+      "type": "string"
+    },
+    "verificationIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "title": "Verificationids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "objectType",
+    "storyId",
+    "slug",
+    "title",
+    "summary",
+    "editorialState",
+    "publicationState",
+    "highRisk",
+    "breaking",
+    "claimIds",
+    "sourceIds",
+    "evidenceIds",
+    "verificationIds",
+    "transitionIds",
+    "correctionIds",
+    "receiptIds",
+    "sourcePublishedAt",
+    "firstSeenAt",
+    "liveWirePublishedAt",
+    "updatedAt",
+    "enteredBreakingAt",
+    "correctionPath"
+  ],
+  "title": "Story",
+  "type": "object",
+  "x-livewire-schema-version": "livewire.editorial.v1"
+}

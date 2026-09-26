@@ -1,0 +1,268 @@
+{
+  "$defs": {
+    "CorroborationRule": {
+      "enum": [
+        "insufficient",
+        "official_primary",
+        "two_independent"
+      ],
+      "title": "CorroborationRule",
+      "type": "string"
+    },
+    "HumanReview": {
+      "additionalProperties": false,
+      "properties": {
+        "human": {
+          "const": true,
+          "title": "Human",
+          "type": "boolean"
+        },
+        "reason": {
+          "maxLength": 4000,
+          "minLength": 12,
+          "title": "Reason",
+          "type": "string"
+        },
+        "reviewedAt": {
+          "format": "date-time",
+          "title": "Reviewedat",
+          "type": "string"
+        },
+        "reviewerId": {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "title": "Reviewerid",
+          "type": "string"
+        },
+        "reviewerName": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Reviewername",
+          "type": "string"
+        },
+        "reviewerRole": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Reviewerrole",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reviewerId",
+        "reviewerName",
+        "reviewerRole",
+        "human",
+        "reviewedAt",
+        "reason"
+      ],
+      "title": "HumanReview",
+      "type": "object"
+    },
+    "VerificationOutcome": {
+      "enum": [
+        "unverified",
+        "inconclusive",
+        "supported",
+        "refuted"
+      ],
+      "title": "VerificationOutcome",
+      "type": "string"
+    }
+  },
+  "$id": "https://livewire.show/schemas/editorial/v2/verification.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "claimAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Claimagreement"
+    },
+    "claimId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Claimid",
+      "type": "string"
+    },
+    "correctionPath": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Correctionpath"
+    },
+    "corroboration": {
+      "$ref": "#/$defs/CorroborationRule"
+    },
+    "entityAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Entityagreement"
+    },
+    "eventAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Eventagreement"
+    },
+    "evidenceIds": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "minItems": 1,
+      "title": "Evidenceids",
+      "type": "array"
+    },
+    "humanReview": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/HumanReview"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "independentSourceCount": {
+      "minimum": 0,
+      "title": "Independentsourcecount",
+      "type": "integer"
+    },
+    "lexicalOverlapOnly": {
+      "title": "Lexicaloverlaponly",
+      "type": "boolean"
+    },
+    "locationAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Locationagreement"
+    },
+    "objectType": {
+      "const": "verification",
+      "title": "Objecttype",
+      "type": "string"
+    },
+    "officialPrimarySourceId": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Officialprimarysourceid"
+    },
+    "outcome": {
+      "$ref": "#/$defs/VerificationOutcome"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "maxLength": 4000,
+          "minLength": 12,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Reason"
+    },
+    "schemaVersion": {
+      "const": "livewire.editorial.v2",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "timeAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Timeagreement"
+    },
+    "verificationId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Verificationid",
+      "type": "string"
+    },
+    "verifiedAt": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Verifiedat"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "objectType",
+    "verificationId",
+    "claimId",
+    "outcome",
+    "evidenceIds",
+    "claimAgreement",
+    "eventAgreement",
+    "entityAgreement",
+    "locationAgreement",
+    "timeAgreement",
+    "corroboration",
+    "independentSourceCount",
+    "officialPrimarySourceId",
+    "lexicalOverlapOnly",
+    "humanReview",
+    "verifiedAt",
+    "reason",
+    "correctionPath"
+  ],
+  "title": "Verification",
+  "type": "object",
+  "x-livewire-schema-version": "livewire.editorial.v2"
+}

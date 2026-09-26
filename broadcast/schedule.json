@@ -1,0 +1,704 @@
+{
+  "network": {
+    "name": "Live Wire",
+    "callsign": "LWN",
+    "tagline": "The news that never sleeps."
+  },
+  "timezone": "America/New_York",
+  "anchors": [
+    {
+      "id": "vance",
+      "name": "Sterling Vance",
+      "title": "Chief Anchor, Live Wire Tonight",
+      "persona": "The Gravitas. Unflappable voice-of-record who believes utterly that this is THE evening news. His satire is structural, never jokey: total sincerity about absurd material, and a single raised eyebrow when history rhymes. Sign-off: 'The wire never sleeps. Neither, apparently, do I.'",
+      "beat": "general",
+      "voice": "daniel",
+      "avatar": {
+        "skin": "#e8c4a0",
+        "hair": "#d8d8d8",
+        "hairStyle": "side",
+        "facialHair": "none",
+        "glasses": true,
+        "jacket": "#1b2733",
+        "tie": "#7c1f2b",
+        "age": "senior"
+      }
+    },
+    {
+      "id": "dawn",
+      "name": "Dawn Delgado",
+      "title": "Morning Anchor, The Morning Wire",
+      "persona": "The Connector. Warm, quick, bright-eyed at 5am with a coffee mug that will not survive to 9. Does the real news straight while her desk partner leans in with chaos; finds the genuine silver lining in something genuinely bad ('...and that's kind of beautiful').",
+      "beat": "general",
+      "voice": "sarah",
+      "avatar": {
+        "skin": "#c98a5e",
+        "hair": "#1a1208",
+        "hairStyle": "swoop",
+        "facialHair": "none",
+        "glasses": false,
+        "jacket": "#1f5fbf",
+        "tie": "#14b8a6",
+        "age": "mid"
+      }
+    },
+    {
+      "id": "theo",
+      "name": "Theo Park",
+      "title": "Rumors Desk Correspondent",
+      "persona": "The Insider. Smooth-talking conspiratorial wink, 'you didn't hear it from me.' Runs the rumors desk like a noir detective with a strict evidentiary code: everything unconfirmed is loudly labeled unconfirmed. Keeper of the Confidence Meter (Coin-flip / Smells Right / Buy It / Lawyer Called).",
+      "beat": "rumors",
+      "voice": "eric",
+      "avatar": {
+        "skin": "#f0d2b4",
+        "hair": "#5b3a1a",
+        "hairStyle": "short",
+        "facialHair": "stubble",
+        "glasses": true,
+        "jacket": "#3a3f44",
+        "tie": "#0d9488",
+        "age": "young"
+      }
+    },
+    {
+      "id": "vivian",
+      "name": "Vivian Stax",
+      "title": "Markets Anchor, The Floor",
+      "persona": "The Quant. Numbers-fluent and faintly exhausted, she covers the market like a brilliant child psychologist covering a toddler: the market is 'he,' he has feelings, and she diagnoses his day. Recurring: 'He's Having a Day' and 'The Number That's Lying to You.'",
+      "beat": "markets",
+      "voice": "matilda",
+      "avatar": {
+        "skin": "#5a3825",
+        "hair": "#0d0d0d",
+        "hairStyle": "bun",
+        "facialHair": "none",
+        "glasses": true,
+        "jacket": "#2f3b52",
+        "tie": "#d4af37",
+        "age": "mid"
+      }
+    },
+    {
+      "id": "reggie",
+      "name": "Reggie Bishop",
+      "title": "Prime & Late Anchor, Prime Wire / Last Call",
+      "persona": "The Night Owl. Deep velvet deadpan; treats the news like jazz, finding the absurd undertone and letting it play. His voice drops lower the dumber the story gets. The network's sharpest satirical bite after dark and its viral engine.",
+      "beat": "politics",
+      "voice": "brian",
+      "avatar": {
+        "skin": "#4a3120",
+        "hair": "#0a0a0a",
+        "hairStyle": "afro",
+        "facialHair": "beard",
+        "glasses": false,
+        "jacket": "#2b1a12",
+        "tie": "#d97706",
+        "age": "mid"
+      }
+    },
+    {
+      "id": "iris",
+      "name": "Iris Lindqvist",
+      "title": "Daytime & Weekend General Anchor",
+      "persona": "The Steady Hand. The credible midday and weekend palate-cleanser. Tight, mostly-straight digests; owns 'The Correction,' where LWN cops to one thing it (or the discourse) got wrong. Honesty as a recurring bit. Second sarah face, never live opposite Dawn.",
+      "beat": "us",
+      "voice": "sarah",
+      "avatar": {
+        "skin": "#f5e0c8",
+        "hair": "#e8d49a",
+        "hairStyle": "ponytail",
+        "facialHair": "none",
+        "glasses": false,
+        "jacket": "#6b3f8f",
+        "tie": "#c0c0c0",
+        "age": "young"
+      }
+    },
+    {
+      "id": "sol",
+      "name": "Sol Abara",
+      "title": "World Desk Anchor",
+      "persona": "The Foreign Desk. Calm world-affairs authority who runs the afternoon wire and the overnight top-of-hour updates; relishes 'The Long View' on stories the rest of the day rushed past. Second daniel face, never live opposite Vance.",
+      "beat": "world",
+      "voice": "daniel",
+      "avatar": {
+        "skin": "#6b4226",
+        "hair": "#0d0d0d",
+        "hairStyle": "bald",
+        "facialHair": "mustache",
+        "glasses": true,
+        "jacket": "#1f3d2b",
+        "tie": "#7c1f2b",
+        "age": "senior"
+      }
+    },
+    {
+      "id": "cyrus",
+      "name": "Cyrus Vale",
+      "title": "Overnight Anchor, The Vale Hour",
+      "persona": "The Gremlin. Runs the graveyard unsupervised with the lawyers asleep and the gloves off the delivery (never the facts). Re-examines the day's news at midnight with maximum bite and a single deadpan blink before handing to the loop. Second eric face, never live opposite Theo.",
+      "beat": "rumors",
+      "voice": "eric",
+      "avatar": {
+        "skin": "#cda07a",
+        "hair": "#3a2415",
+        "hairStyle": "swoop",
+        "facialHair": "stubble",
+        "glasses": false,
+        "jacket": "#111111",
+        "tie": "#9b1c1c",
+        "age": "mid"
+      }
+    }
+  ],
+  "programs": [
+    {
+      "id": "vale_hour",
+      "name": "The Vale Hour",
+      "tagline": "The building's empty. The lawyers are asleep. Cyrus has the keys.",
+      "anchor_ids": [
+        "cyrus"
+      ],
+      "days": "weekdays",
+      "start": "00:00",
+      "end": "01:00",
+      "beats": [
+        "rumors",
+        "world",
+        "tech"
+      ],
+      "tone": "Sharpest satire on the network. The day reconsidered at 1am with zero solemnity and maximum bite, facts still 100% true.",
+      "format": "Segments: 'The Day, Reconsidered' (noon's takes re-examined) / 'The 1AM Philosopher' deadpan monologue / 'Tomorrow's Apology, Tonight' / closes on one deadpan sentence and a slow blink into the loop.",
+      "segment_count": 6,
+      "cadence_min": 60,
+      "satire_level": 5,
+      "description": "Graveyard rumors-after-dark hour, the network's satire peak before the overnight loop takes over."
+    },
+    {
+      "id": "overnight_loop_wk",
+      "name": "LWN Overnight Loop",
+      "tagline": "While you sleep, the wire doesn't.",
+      "anchor_ids": [
+        "sol"
+      ],
+      "days": "weekdays",
+      "start": "01:00",
+      "end": "05:30",
+      "beats": [
+        "world",
+        "us",
+        "business"
+      ],
+      "tone": "Near-zero-cost best-of reel with a live, sincere top-of-hour world update. Carries a subtle REPLAY bug so recorded content is never sold as live.",
+      "format": "~50-min auto-assembled best-of reel of the day's highest-scored segments + a fresh 5-8 min Sol-anchored Top-of-the-Hour world/overseas-markets update each hour.",
+      "segment_count": 4,
+      "cadence_min": 60,
+      "satire_level": 2,
+      "description": "Fills the dead hours with a rolling best-of loop refreshed only on the hour or on breaking news."
+    },
+    {
+      "id": "first_light",
+      "name": "First Light",
+      "tagline": "The world broke overnight. Let's walk through the rubble.",
+      "anchor_ids": [
+        "dawn"
+      ],
+      "days": "weekdays",
+      "start": "05:30",
+      "end": "07:00",
+      "beats": [
+        "world",
+        "us",
+        "markets"
+      ],
+      "tone": "Gentle straight on-ramp for early risers; real overnight wire delivered like a sunrise, light wink.",
+      "format": "Segments: 'While You Were Asleep' (overnight's three biggest, ranked by how much they'll ruin your day) / pre-market futures + one overnight Asia/Europe number / quick world headlines.",
+      "segment_count": 8,
+      "cadence_min": 90,
+      "satire_level": 3,
+      "description": "Pre-market national wake-up that beats fragmented local affiliate handoffs with one coherent feed."
+    },
+    {
+      "id": "morning_wire",
+      "name": "The Morning Wire",
+      "tagline": "Faster, denser, funnier than the show you used to watch.",
+      "anchor_ids": [
+        "dawn",
+        "theo"
+      ],
+      "days": "weekdays",
+      "start": "07:00",
+      "end": "09:30",
+      "beats": [
+        "us",
+        "politics",
+        "world",
+        "tech",
+        "business"
+      ],
+      "tone": "Credible morning two-hander; Dawn does real news, Theo is the chaos gremlin leaning in with unconfirmed teases. Rising 2 to 3.",
+      "format": "Segments: straight A-Block / 'Theo Leans In' (a rumor tease per half hour Dawn doesn't want aired) / 'And That's Kind of Beautiful' silver-lining bit / 'Your Day in One Sentence.'",
+      "segment_count": 12,
+      "cadence_min": 120,
+      "satire_level": 4,
+      "description": "Morning flagship that steals younger cord-cutters from GMA/Today on pace, density and chemistry."
+    },
+    {
+      "id": "the_floor_am",
+      "name": "The Floor",
+      "tagline": "He's having a day. Let's diagnose it.",
+      "anchor_ids": [
+        "vivian",
+        "theo"
+      ],
+      "days": "weekdays",
+      "start": "09:30",
+      "end": "11:30",
+      "beats": [
+        "markets",
+        "business",
+        "tech"
+      ],
+      "tone": "Hot-tier markets-prime. Vivian as the market's exhausted therapist; Theo brings market chatter with the Confidence Meter, always labeled unconfirmed. Satire about the business news, never trading advice.",
+      "format": "Opens on the 9:30 bell. Segments: 'He's Having a Day' / 'What Word Set Him Off' / 'Theo's Unconfirmed Chatter' (Coin-flip to Lawyer Called) / 'The Number That's Lying to You.'",
+      "segment_count": 9,
+      "cadence_min": 60,
+      "satire_level": 4,
+      "description": "Live markets the moment they open, on the fastest freshness clock, when cable just repeats itself."
+    },
+    {
+      "id": "noon_read",
+      "name": "The Noon Read",
+      "tagline": "If you only watch one thing today.",
+      "anchor_ids": [
+        "iris"
+      ],
+      "days": "weekdays",
+      "start": "11:30",
+      "end": "13:00",
+      "beats": [
+        "us",
+        "world",
+        "politics"
+      ],
+      "tone": "Deliberately low-satire credibility palate-cleanser; tight, mostly-straight midday digest.",
+      "format": "Segments: 'Five at Noon' (the five real stories that matter, fast) / 'The Correction' (one thing LWN or the discourse got wrong) / a quick world check.",
+      "segment_count": 6,
+      "cadence_min": 90,
+      "satire_level": 3,
+      "description": "Lunchtime catch-up newscast that banks credibility between the morning and the afternoon market session."
+    },
+    {
+      "id": "the_floor_pm",
+      "name": "The Floor: Afternoon",
+      "tagline": "The toddler's mood swings, hour by hour.",
+      "anchor_ids": [
+        "vivian"
+      ],
+      "days": "weekdays",
+      "start": "13:00",
+      "end": "15:30",
+      "beats": [
+        "markets",
+        "business",
+        "tech"
+      ],
+      "tone": "Hot-tier afternoon session; Vivian solo carrying the business news with dry numbers-fluent authority into the close shoulder.",
+      "format": "Rolling intraday coverage: sector moves, tech earnings/analysis, 'The Number That's Lying to You,' and setup for the closing bell.",
+      "segment_count": 9,
+      "cadence_min": 60,
+      "satire_level": 4,
+      "description": "Afternoon market-hours block keeping the Hot-tier markets spine wall-to-wall through the session."
+    },
+    {
+      "id": "closing_bell",
+      "name": "The Closing Bell & Other Lies",
+      "tagline": "What today meant, allegedly.",
+      "anchor_ids": [
+        "vivian",
+        "theo"
+      ],
+      "days": "weekdays",
+      "start": "15:30",
+      "end": "16:30",
+      "beats": [
+        "markets",
+        "business",
+        "rumors"
+      ],
+      "tone": "Post-mortem on what the day 'meant' vs what actually happened; the title is the thesis. Hands off the markets baton to the news night.",
+      "format": "Spans the 4:00 close. Segments: 'What Today Meant (Allegedly)' (narratives graded) / 'Tomorrow's Panic, Previewed' from the after-hours wire / Theo's after-hours rumor setups.",
+      "segment_count": 8,
+      "cadence_min": 60,
+      "satire_level": 4,
+      "description": "Definitive closing-bell wrap plus after-hours rumor setups, ending the live markets session."
+    },
+    {
+      "id": "afternoon_wire",
+      "name": "The Afternoon Wire",
+      "tagline": "The day, taking shape.",
+      "anchor_ids": [
+        "sol"
+      ],
+      "days": "weekdays",
+      "start": "16:30",
+      "end": "18:30",
+      "beats": [
+        "us",
+        "world",
+        "politics",
+        "tech"
+      ],
+      "tone": "Straight-ish evening ramp; Sol's world-desk authority sharpening tone as the dinner flagship approaches.",
+      "format": "Two-hour rundown into the flagship: top news blocks, a world deep-cut, and a 'Long View' historical-rhyme segment to set the table for Vance.",
+      "segment_count": 9,
+      "cadence_min": 120,
+      "satire_level": 3,
+      "description": "Pre-flagship ramp that builds the evening audience and hands a primed news night to Vance."
+    },
+    {
+      "id": "live_wire_tonight",
+      "name": "Live Wire Tonight",
+      "tagline": "Same facts as the other guy. More of them. With a face.",
+      "anchor_ids": [
+        "vance",
+        "theo"
+      ],
+      "days": "weekdays",
+      "start": "18:30",
+      "end": "19:00",
+      "beats": [
+        "politics",
+        "us",
+        "world",
+        "markets",
+        "rumors"
+      ],
+      "tone": "The marquee dinner-hour flagship. Low, structural satire living in Vance's sincerity; the one segment legacy can't run. Straight enough for the dinner table, sharp enough to remember.",
+      "format": "Tight rundown: lead block world/us/politics (straight, no bits) -> close-of-day business/markets wrap -> 'The Wire Ahead' Theo rumors desk with explicit confidence levels -> one sharp satirical kicker. Beat mix ~40% politics/us, 20% world, 20% business/markets, 15% rumors, 5% kicker.",
+      "segment_count": 7,
+      "cadence_min": 60,
+      "satire_level": 3,
+      "description": "The crown-jewel 6:30 evening newscast: out-densities and out-personalities World News Tonight and adds the Rumors segment legacy outlets are forbidden to air."
+    },
+    {
+      "id": "the_briefing",
+      "name": "The Briefing",
+      "tagline": "The grown-up explains it.",
+      "anchor_ids": [
+        "vance",
+        "vivian"
+      ],
+      "days": "weekdays",
+      "start": "19:00",
+      "end": "20:00",
+      "beats": [
+        "politics",
+        "world",
+        "business"
+      ],
+      "tone": "Calm, authoritative deep-analysis hour; the network's flagship credibility unit before prime turns up the heat.",
+      "format": "Steady-tier deep dives: 'Vance Explains' one issue with genuine clarity, plus Vivian on the business/policy angle and 'The Long View' on what it means.",
+      "segment_count": 5,
+      "cadence_min": 120,
+      "satire_level": 3,
+      "description": "Day-in-review analysis hour that re-airs and updates the flagship's themes for the 7pm audience while spending no satire capital."
+    },
+    {
+      "id": "prime_wire",
+      "name": "Prime Wire",
+      "tagline": "Smart satire, real reporting \u2014 not a screaming match.",
+      "anchor_ids": [
+        "reggie"
+      ],
+      "days": "weekdays",
+      "start": "20:00",
+      "end": "22:00",
+      "beats": [
+        "us",
+        "politics",
+        "tech",
+        "world"
+      ],
+      "tone": "Signature prime time vs cable shouting. Reggie treats news like jazz; satire sharpens across the two hours, his voice dropping lower the dumber the story gets.",
+      "format": "Segments: 'The Set Piece' (one story taken apart with a scalpel) / 'The B-Side' (the real story the big story distracts from) / sharp recurring satirical riffs. Real facts, biting delivery.",
+      "segment_count": 9,
+      "cadence_min": 120,
+      "satire_level": 5,
+      "description": "Smart satirical prime block that counter-programs partisan cable and produces clippable prime-time moments."
+    },
+    {
+      "id": "rumor_mill",
+      "name": "The Rumor Mill",
+      "tagline": "Unconfirmed. And we'll tell you exactly how unconfirmed.",
+      "anchor_ids": [
+        "theo",
+        "reggie"
+      ],
+      "days": "weekdays",
+      "start": "22:00",
+      "end": "23:00",
+      "beats": [
+        "rumors",
+        "tech",
+        "business"
+      ],
+      "tone": "The competitive wedge given its own hour. The joke is the rigor, never fake facts; everything unconfirmed is loudly labeled unconfirmed.",
+      "format": "Segments: 'Unconfirmed' (source-type + Confidence Meter + what would have to be true) / 'Whisper to Wire' (past rumors that became real news, scored) / 'Three Things We Won't Say Yet' restraint-as-theater.",
+      "segment_count": 8,
+      "cadence_min": 60,
+      "satire_level": 5,
+      "description": "Nightly rumors-desk hour, the proof-of-value flywheel that recruits legacy-news defectors no broadcaster can copy."
+    },
+    {
+      "id": "last_call",
+      "name": "Last Call",
+      "tagline": "Weekend Update, every single night.",
+      "anchor_ids": [
+        "reggie"
+      ],
+      "days": "weekdays",
+      "start": "23:00",
+      "end": "00:00",
+      "beats": [
+        "us",
+        "politics",
+        "tech",
+        "rumors"
+      ],
+      "tone": "The brand's soul: satirical-but-real late newscast, the viral recruiting funnel. Comedy with a wire, a wire with jokes.",
+      "format": "Monologue-energy late wrap: the day's biggest stories re-cut for bite, a sharp desk piece, and a clippable closer engineered to spread overnight.",
+      "segment_count": 7,
+      "cadence_min": 90,
+      "satire_level": 5,
+      "description": "Late satirical newscast that steals from both comedy and news and feeds tomorrow's daytime audience via clips."
+    },
+    {
+      "id": "vale_hour_wknd",
+      "name": "The Vale Hour: Weekend",
+      "tagline": "Saturday's lawyers are asleep too.",
+      "anchor_ids": [
+        "cyrus"
+      ],
+      "days": "weekends",
+      "start": "00:00",
+      "end": "01:00",
+      "beats": [
+        "rumors",
+        "tech",
+        "world"
+      ],
+      "tone": "Sharpest weekend satire, identical graveyard energy to the weekday Vale Hour.",
+      "format": "Same gremlin format: 'The Day, Reconsidered' / '1AM Philosopher' monologue / deadpan blink into the loop.",
+      "segment_count": 6,
+      "cadence_min": 60,
+      "satire_level": 5,
+      "description": "Weekend graveyard rumors hour holding the satire peak before the overnight loop."
+    },
+    {
+      "id": "overnight_loop_wknd",
+      "name": "LWN Overnight Loop (Weekend)",
+      "tagline": "The wire keeps the lights on.",
+      "anchor_ids": [
+        "sol"
+      ],
+      "days": "weekends",
+      "start": "01:00",
+      "end": "06:00",
+      "beats": [
+        "world",
+        "us",
+        "business"
+      ],
+      "tone": "Same near-zero-cost best-of loop with live top-of-hour world update; runs an hour longer for thinner weekend mornings. REPLAY bug on recorded content.",
+      "format": "Rolling best-of reel + fresh hourly Sol-anchored Top-of-the-Hour world/overseas update.",
+      "segment_count": 4,
+      "cadence_min": 60,
+      "satire_level": 2,
+      "description": "Extended weekend overnight loop filling the thinnest-audience hours at near-zero marginal cost."
+    },
+    {
+      "id": "weekend_first_light",
+      "name": "Weekend First Light",
+      "tagline": "A slower start to a broken world.",
+      "anchor_ids": [
+        "iris"
+      ],
+      "days": "weekends",
+      "start": "06:00",
+      "end": "08:00",
+      "beats": [
+        "world",
+        "us",
+        "tech"
+      ],
+      "tone": "Relaxed lean-back weekend wake-up; lighter pace, a bit more feature satire than the weekday.",
+      "format": "Steady-tier: overnight world recap, a light feature, and a single market/tech curiosity. Calm and roomy.",
+      "segment_count": 9,
+      "cadence_min": 120,
+      "satire_level": 3,
+      "description": "Easy weekend morning on-ramp tuned for a thinner, lean-back audience."
+    },
+    {
+      "id": "weekend_wire",
+      "name": "Weekend Wire",
+      "tagline": "Staffed like a weekday. On purpose.",
+      "anchor_ids": [
+        "iris",
+        "sol"
+      ],
+      "days": "weekends",
+      "start": "08:00",
+      "end": "11:00",
+      "beats": [
+        "us",
+        "world",
+        "politics"
+      ],
+      "tone": "Full weekend morning two-hander while incumbents run skeleton crews; credible with a wink.",
+      "format": "Steady-tier rundown blocks alternating Iris on US/politics and Sol on world, with a recurring 'The Correction' honesty bit.",
+      "segment_count": 12,
+      "cadence_min": 150,
+      "satire_level": 4,
+      "description": "Fully-staffed weekend morning newscast beating incumbents who hand Saturdays to the B-team."
+    },
+    {
+      "id": "the_week_recap",
+      "name": "The Week That Was / The Week Ahead",
+      "tagline": "Our answer to the Sunday shows \u2014 funnier, faster.",
+      "anchor_ids": [
+        "vance",
+        "reggie"
+      ],
+      "days": "weekends",
+      "start": "11:00",
+      "end": "14:00",
+      "beats": [
+        "politics",
+        "us",
+        "business"
+      ],
+      "tone": "Sharp satirical recap (Sat: the week that was) and look-forward (Sun: the week ahead). Vance's gravitas vs Reggie's bite, no market clock so the wink runs.",
+      "format": "Long-form: week's biggest stories graded, a marquee 'Set Piece' breakdown, and a business/politics look at the week ahead. Reggie sharpens it as it goes.",
+      "segment_count": 6,
+      "cadence_min": 180,
+      "satire_level": 5,
+      "description": "Weekend long-form recap that counter-programs the dry Sunday political shows with pace and personality."
+    },
+    {
+      "id": "the_long_read",
+      "name": "The Long Read",
+      "tagline": "The deep dives legacy weekends never make time for.",
+      "anchor_ids": [
+        "sol"
+      ],
+      "days": "weekends",
+      "start": "14:00",
+      "end": "16:00",
+      "beats": [
+        "world",
+        "tech",
+        "business"
+      ],
+      "tone": "Steady-tier weekend deep-dives and explainers; Sol's calm authority, low satire, high substance.",
+      "format": "A few long explainer segments on slow-moving world/tech/business stories the daily grind skips, plus a 'Long View' historical frame.",
+      "segment_count": 4,
+      "cadence_min": 150,
+      "satire_level": 3,
+      "description": "Weekend long-form explainer block proving LWN is a substantive tool, not just a satire toy."
+    },
+    {
+      "id": "weekend_afternoon_wire",
+      "name": "Weekend Afternoon Wire",
+      "tagline": "The day's news, all afternoon.",
+      "anchor_ids": [
+        "dawn"
+      ],
+      "days": "weekends",
+      "start": "16:00",
+      "end": "18:30",
+      "beats": [
+        "us",
+        "world",
+        "politics",
+        "tech"
+      ],
+      "tone": "Active-tier general weekend afternoon ramp into the weekend flagship; bright and quick.",
+      "format": "Rolling afternoon rundown of the day's news with a light recurring satirical kicker, building toward Weekend Tonight.",
+      "segment_count": 10,
+      "cadence_min": 120,
+      "satire_level": 4,
+      "description": "Weekend afternoon catch-up that keeps the day live and ramps into the weekend flagship."
+    },
+    {
+      "id": "weekend_tonight",
+      "name": "Weekend Tonight",
+      "tagline": "The flagship doesn't take Saturdays off.",
+      "anchor_ids": [
+        "vance",
+        "theo"
+      ],
+      "days": "weekends",
+      "start": "18:30",
+      "end": "19:00",
+      "beats": [
+        "politics",
+        "us",
+        "world",
+        "rumors"
+      ],
+      "tone": "Flagship continuity seven days a week. Same Vance gravitas and Theo Rumors desk as the weekday 6:30, beating incumbents who hand weekends to the B-team.",
+      "format": "Same flagship rundown shape: straight lead block -> day wrap -> 'The Wire Ahead' rumors desk -> satirical kicker.",
+      "segment_count": 7,
+      "cadence_min": 60,
+      "satire_level": 3,
+      "description": "The 6:30 weekend flagship: marquee evening newscast continuity against skeleton-crew incumbents."
+    },
+    {
+      "id": "prime_weekend",
+      "name": "Prime Weekend",
+      "tagline": "Longer, looser, sharper.",
+      "anchor_ids": [
+        "reggie"
+      ],
+      "days": "weekends",
+      "start": "19:00",
+      "end": "22:00",
+      "beats": [
+        "us",
+        "politics",
+        "tech",
+        "world"
+      ],
+      "tone": "Three-hour weekend prime that leans harder into satire with no market clock anchoring the day.",
+      "format": "Extended jazz-prime: multiple 'Set Piece' and 'B-Side' breakdowns, sharpening across the night toward the rumor block.",
+      "segment_count": 9,
+      "cadence_min": 150,
+      "satire_level": 5,
+      "description": "Long weekend prime block that maximizes clippable satirical moments when audiences are most relaxed."
+    },
+    {
+      "id": "rumor_mill_wknd",
+      "name": "The Rumor Mill: Weekend",
+      "tagline": "The sharpest desk on the sharpest night.",
+      "anchor_ids": [
+        "theo",
+        "cyrus"
+      ],
+      "days": "weekends",
+      "start": "22:00",
+      "end": "00:00",
+      "beats": [
+        "rumors",
+        "tech",
+        "business"
+      ],
+      "tone": "Two-hour weekend rumors prime, the peak viral window; the rigor-is-the-joke desk run by Theo and the gremlin Cyrus.",
+      "format": "Extended desk: 'Unconfirmed' with the Confidence Meter, 'Whisper to Wire' scoring, and a longer late satirical run that hands straight into the Vale Hour.",
+      "segment_count": 8,
+      "cadence_min": 90,
+      "satire_level": 5,
+      "description": "Doubled-up weekend rumors prime that carries the satire peak straight into the overnight Vale Hour with no gap."
+    }
+  ]
+}

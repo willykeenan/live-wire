@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://example.invalid/harbor-grid-whitepaper",
+    "headline": "Harbor Grid publishes a battery monitoring white paper",
+    "category": "tech",
+    "published_at": "2026-07-12T04:15:27Z"
+  },
+  {
+    "url": "https://example.invalid/aster-helix",
+    "headline": "Aster Labs open-sources the Helix runtime",
+    "category": "tech",
+    "published_at": "2026-07-11T22:38:57Z"
+  },
+  {
+    "url": "https://example.invalid/harbor-console",
+    "headline": "Harbor Grid is an open-source portable games console, designed from scratch",
+    "category": "tech",
+    "published_at": "2026-07-11T21:58:00Z"
+  }
+]

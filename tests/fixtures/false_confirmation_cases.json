@@ -1,0 +1,52 @@
+[
+  {
+    "case_id": "shared_entities_different_event",
+    "now": 2000.0,
+    "rumor": {
+      "id": "fixture-entity-overlap",
+      "headline": "Northstar Energy agrees to acquire Harbor Grid in an all-stock deal",
+      "entities": {
+        "companies": ["Northstar Energy", "Harbor Grid"],
+        "tickers": ["NST"],
+        "people": [],
+        "other": []
+      },
+      "first_seen": 1800.0,
+      "last_seen": 1900.0,
+      "status": "new",
+      "jump_score": 82
+    },
+    "wire": {
+      "headline": "Northstar Energy and Harbor Grid expand a battery monitoring pilot",
+      "source": "Fixture Wire",
+      "url": "https://example.invalid/entity-overlap",
+      "ts": 1950.0
+    },
+    "invalidating_fact": "Shared entity words do not establish that an acquisition occurred."
+  },
+  {
+    "case_id": "citation_predates_claim",
+    "now": 3000.0,
+    "rumor": {
+      "id": "fixture-predating-citation",
+      "headline": "Aster Labs will cut two thousand roles after the Helix integration",
+      "entities": {
+        "companies": ["Aster Labs", "Helix"],
+        "tickers": ["ASTR"],
+        "people": [],
+        "other": []
+      },
+      "first_seen": 2800.0,
+      "last_seen": 2900.0,
+      "status": "developing",
+      "jump_score": 91
+    },
+    "wire": {
+      "headline": "Aster Labs completes Helix integration and reports quarterly revenue",
+      "source": "Fixture Wire",
+      "url": "https://example.invalid/predating-citation",
+      "ts": 1700.0
+    },
+    "invalidating_fact": "The cited story predates the tracked claim and reports a different event."
+  }
+]

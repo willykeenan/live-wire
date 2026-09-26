@@ -1,0 +1,155 @@
+{
+  "$defs": {
+    "EvidenceRelation": {
+      "enum": [
+        "supports",
+        "refutes",
+        "context"
+      ],
+      "title": "EvidenceRelation",
+      "type": "string"
+    }
+  },
+  "$id": "https://livewire.show/schemas/editorial/v2/evidence.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attributable": {
+      "title": "Attributable",
+      "type": "boolean"
+    },
+    "capturedAt": {
+      "format": "date-time",
+      "title": "Capturedat",
+      "type": "string"
+    },
+    "claimAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Claimagreement"
+    },
+    "claimId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Claimid",
+      "type": "string"
+    },
+    "description": {
+      "maxLength": 20000,
+      "minLength": 1,
+      "title": "Description",
+      "type": "string"
+    },
+    "entityAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Entityagreement"
+    },
+    "eventAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Eventagreement"
+    },
+    "evidenceId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Evidenceid",
+      "type": "string"
+    },
+    "locationAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Locationagreement"
+    },
+    "locator": {
+      "maxLength": 20000,
+      "minLength": 1,
+      "title": "Locator",
+      "type": "string"
+    },
+    "objectType": {
+      "const": "evidence",
+      "title": "Objecttype",
+      "type": "string"
+    },
+    "relation": {
+      "$ref": "#/$defs/EvidenceRelation"
+    },
+    "schemaVersion": {
+      "const": "livewire.editorial.v2",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "sourceId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Sourceid",
+      "type": "string"
+    },
+    "targetText": {
+      "maxLength": 20000,
+      "minLength": 1,
+      "title": "Targettext",
+      "type": "string"
+    },
+    "timeAgreement": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Timeagreement"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "objectType",
+    "evidenceId",
+    "claimId",
+    "sourceId",
+    "targetText",
+    "relation",
+    "description",
+    "locator",
+    "capturedAt",
+    "attributable",
+    "claimAgreement",
+    "eventAgreement",
+    "entityAgreement",
+    "locationAgreement",
+    "timeAgreement"
+  ],
+  "title": "Evidence",
+  "type": "object",
+  "x-livewire-schema-version": "livewire.editorial.v2"
+}

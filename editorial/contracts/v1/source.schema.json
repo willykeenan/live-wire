@@ -1,0 +1,98 @@
+{
+  "$defs": {
+    "SourceType": {
+      "enum": [
+        "official_primary",
+        "primary",
+        "newswire",
+        "publisher",
+        "document",
+        "eyewitness",
+        "social",
+        "other"
+      ],
+      "title": "SourceType",
+      "type": "string"
+    }
+  },
+  "$id": "https://livewire.show/schemas/editorial/v1/source.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attributable": {
+      "title": "Attributable",
+      "type": "boolean"
+    },
+    "firstSeenAt": {
+      "format": "date-time",
+      "title": "Firstseenat",
+      "type": "string"
+    },
+    "independenceKey": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Independencekey",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "objectType": {
+      "const": "source",
+      "title": "Objecttype",
+      "type": "string"
+    },
+    "retrievedAt": {
+      "format": "date-time",
+      "title": "Retrievedat",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "livewire.editorial.v1",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "sourceId": {
+      "maxLength": 128,
+      "minLength": 3,
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+      "title": "Sourceid",
+      "type": "string"
+    },
+    "sourcePublishedAt": {
+      "format": "date-time",
+      "title": "Sourcepublishedat",
+      "type": "string"
+    },
+    "sourceType": {
+      "$ref": "#/$defs/SourceType"
+    },
+    "url": {
+      "maxLength": 2048,
+      "minLength": 10,
+      "pattern": "^https?://[^\\s]+$",
+      "title": "Url",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "objectType",
+    "sourceId",
+    "name",
+    "url",
+    "sourceType",
+    "independenceKey",
+    "attributable",
+    "sourcePublishedAt",
+    "firstSeenAt",
+    "retrievedAt"
+  ],
+  "title": "Source",
+  "type": "object",
+  "x-livewire-schema-version": "livewire.editorial.v1"
+}

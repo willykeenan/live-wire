@@ -1,0 +1,623 @@
+{
+  "artifactOwnership": {
+    "custody": "user_repository",
+    "exportable": true,
+    "ownerProduct": "live-wire",
+    "paths": [
+      "capabilities/v2/livewire-editorial-read.manifest.json",
+      "data/gate1/preview.json",
+      "data/gate1/source_wire.json",
+      "editorial/contracts/v2"
+    ]
+  },
+  "artifactSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "oneOf": [
+      {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "const": true
+          },
+          "count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "fixtureOnly": {
+            "const": true
+          },
+          "ownerProduct": {
+            "const": "live-wire"
+          },
+          "previews": {
+            "type": "array"
+          },
+          "productionAuthority": {
+            "const": false
+          },
+          "readOnly": {
+            "const": true
+          },
+          "schemaVersion": {
+            "const": "livewire.editorial.v2"
+          },
+          "snapshot": {
+            "additionalProperties": false,
+            "properties": {
+              "artifactCustody": {
+                "const": "user_repository"
+              },
+              "fixtureId": {
+                "type": "string"
+              },
+              "fixtureOnly": {
+                "const": true
+              },
+              "fixtureSha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "generatedAt": {
+                "type": "string"
+              },
+              "ownerProduct": {
+                "const": "live-wire"
+              },
+              "productionAuthority": {
+                "const": false
+              },
+              "sourceCapture": {
+                "type": "string"
+              },
+              "sourceCaptureSha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "fixtureId",
+              "generatedAt",
+              "sourceCapture",
+              "fixtureSha256",
+              "sourceCaptureSha256",
+              "fixtureOnly",
+              "productionAuthority",
+              "artifactCustody",
+              "ownerProduct"
+            ],
+            "type": "object"
+          },
+          "stories": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/story.schema.json"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "available",
+          "ownerProduct",
+          "readOnly",
+          "fixtureOnly",
+          "productionAuthority",
+          "snapshot",
+          "count",
+          "stories",
+          "previews"
+        ],
+        "title": "story.index",
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "const": true
+          },
+          "category": {
+            "enum": [
+              "business",
+              "markets",
+              "politics",
+              "tech",
+              "us",
+              "world"
+            ]
+          },
+          "claims": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/claim.schema.json"
+            },
+            "type": "array"
+          },
+          "corrections": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/correction.schema.json"
+            },
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/evidence.schema.json"
+            },
+            "type": "array"
+          },
+          "fixtureOnly": {
+            "const": true
+          },
+          "ownerProduct": {
+            "const": "live-wire"
+          },
+          "previewSegments": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "productionAuthority": {
+            "const": false
+          },
+          "readOnly": {
+            "const": true
+          },
+          "receipts": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/receipt.schema.json"
+            },
+            "type": "array"
+          },
+          "schemaVersion": {
+            "const": "livewire.editorial.v2"
+          },
+          "snapshot": {
+            "additionalProperties": false,
+            "properties": {
+              "artifactCustody": {
+                "const": "user_repository"
+              },
+              "fixtureId": {
+                "type": "string"
+              },
+              "fixtureOnly": {
+                "const": true
+              },
+              "fixtureSha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "generatedAt": {
+                "type": "string"
+              },
+              "ownerProduct": {
+                "const": "live-wire"
+              },
+              "productionAuthority": {
+                "const": false
+              },
+              "sourceCapture": {
+                "type": "string"
+              },
+              "sourceCaptureSha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "fixtureId",
+              "generatedAt",
+              "sourceCapture",
+              "fixtureSha256",
+              "sourceCaptureSha256",
+              "fixtureOnly",
+              "productionAuthority",
+              "artifactCustody",
+              "ownerProduct"
+            ],
+            "type": "object"
+          },
+          "sources": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/source.schema.json"
+            },
+            "type": "array"
+          },
+          "story": {
+            "$ref": "../../editorial/contracts/v2/story.schema.json"
+          },
+          "transitions": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/editorial-transition.schema.json"
+            },
+            "type": "array"
+          },
+          "verifications": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/verification.schema.json"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "available",
+          "ownerProduct",
+          "readOnly",
+          "fixtureOnly",
+          "productionAuthority",
+          "snapshot",
+          "story",
+          "claims",
+          "sources",
+          "evidence",
+          "verifications",
+          "transitions",
+          "receipts",
+          "corrections",
+          "category",
+          "previewSegments"
+        ],
+        "title": "story.get",
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "const": true
+          },
+          "fixtureOnly": {
+            "const": true
+          },
+          "ownerProduct": {
+            "const": "live-wire"
+          },
+          "productionAuthority": {
+            "const": false
+          },
+          "readOnly": {
+            "const": true
+          },
+          "receipts": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/receipt.schema.json"
+            },
+            "type": "array"
+          },
+          "schemaVersion": {
+            "const": "livewire.editorial.v2"
+          },
+          "snapshot": {
+            "additionalProperties": false,
+            "properties": {
+              "artifactCustody": {
+                "const": "user_repository"
+              },
+              "fixtureId": {
+                "type": "string"
+              },
+              "fixtureOnly": {
+                "const": true
+              },
+              "fixtureSha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "generatedAt": {
+                "type": "string"
+              },
+              "ownerProduct": {
+                "const": "live-wire"
+              },
+              "productionAuthority": {
+                "const": false
+              },
+              "sourceCapture": {
+                "type": "string"
+              },
+              "sourceCaptureSha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "fixtureId",
+              "generatedAt",
+              "sourceCapture",
+              "fixtureSha256",
+              "sourceCaptureSha256",
+              "fixtureOnly",
+              "productionAuthority",
+              "artifactCustody",
+              "ownerProduct"
+            ],
+            "type": "object"
+          },
+          "storyId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "available",
+          "ownerProduct",
+          "readOnly",
+          "fixtureOnly",
+          "productionAuthority",
+          "snapshot",
+          "storyId",
+          "receipts"
+        ],
+        "title": "receipt.list",
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "const": true
+          },
+          "corrections": {
+            "items": {
+              "$ref": "../../editorial/contracts/v2/correction.schema.json"
+            },
+            "type": "array"
+          },
+          "count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "fixtureOnly": {
+            "const": true
+          },
+          "ownerProduct": {
+            "const": "live-wire"
+          },
+          "productionAuthority": {
+            "const": false
+          },
+          "readOnly": {
+            "const": true
+          },
+          "schemaVersion": {
+            "const": "livewire.editorial.v2"
+          },
+          "snapshot": {
+            "additionalProperties": false,
+            "properties": {
+              "artifactCustody": {
+                "const": "user_repository"
+              },
+              "fixtureId": {
+                "type": "string"
+              },
+              "fixtureOnly": {
+                "const": true
+              },
+              "fixtureSha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "generatedAt": {
+                "type": "string"
+              },
+              "ownerProduct": {
+                "const": "live-wire"
+              },
+              "productionAuthority": {
+                "const": false
+              },
+              "sourceCapture": {
+                "type": "string"
+              },
+              "sourceCaptureSha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "fixtureId",
+              "generatedAt",
+              "sourceCapture",
+              "fixtureSha256",
+              "sourceCaptureSha256",
+              "fixtureOnly",
+              "productionAuthority",
+              "artifactCustody",
+              "ownerProduct"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "available",
+          "ownerProduct",
+          "readOnly",
+          "fixtureOnly",
+          "productionAuthority",
+          "snapshot",
+          "count",
+          "corrections"
+        ],
+        "title": "correction.list",
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "const": false
+          },
+          "error": {
+            "enum": [
+              "gate1_fixture_unavailable",
+              "story_id_required",
+              "story_not_found"
+            ]
+          },
+          "fixtureOnly": {
+            "const": true
+          },
+          "ownerProduct": {
+            "const": "live-wire"
+          },
+          "productionAuthority": {
+            "const": false
+          },
+          "readOnly": {
+            "const": true
+          },
+          "schemaVersion": {
+            "const": "livewire.editorial.v2"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "available",
+          "ownerProduct",
+          "readOnly",
+          "fixtureOnly",
+          "productionAuthority",
+          "error"
+        ],
+        "title": "bounded read error",
+        "type": "object"
+      }
+    ],
+    "title": "Live Wire editorial read artifacts"
+  },
+  "capabilityId": "livewire.editorial.read",
+  "dataPlacement": [
+    "local"
+  ],
+  "estimatedCost": {
+    "concurrency": 1,
+    "externalActions": 0,
+    "modelTokens": 0,
+    "moneyMicros": 0,
+    "retries": 0
+  },
+  "eventTypes": [],
+  "failureSemantics": {
+    "automaticRetry": false,
+    "fallback": "none",
+    "fixtureFailureHttpStatus": 503,
+    "mode": "fail_closed",
+    "recovery": "Restore data/gate1/preview.json from version control."
+  },
+  "gate1Truth": {
+    "fixtureOnly": true,
+    "productionAuthority": false,
+    "readOnly": true,
+    "runtimeMutation": false
+  },
+  "health": "degraded",
+  "healthReason": "Local fixture-backed preview is inspectable; it reads bundled sample data only and is not a production newsroom.",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "oneOf": [
+      {
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "const": "story.index"
+          }
+        },
+        "required": [
+          "operation"
+        ],
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "const": "story.get"
+          },
+          "storyId": {
+            "maxLength": 128,
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation",
+          "storyId"
+        ],
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "const": "receipt.list"
+          },
+          "storyId": {
+            "maxLength": 128,
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation",
+          "storyId"
+        ],
+        "type": "object"
+      },
+      {
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "const": "correction.list"
+          }
+        },
+        "required": [
+          "operation"
+        ],
+        "type": "object"
+      }
+    ],
+    "title": "Live Wire editorial read input"
+  },
+  "latencyEstimate": {
+    "measurementRequiredBeforePromotion": true,
+    "status": "unbenchmarked"
+  },
+  "manifestSchemaVersion": "livewire.capability.v2",
+  "previewBehavior": {
+    "executes": false,
+    "mode": "read_only_fixture",
+    "productionMutation": false
+  },
+  "productId": "live-wire",
+  "provenance": {
+    "editorialSchemaVersion": "livewire.editorial.v2",
+    "evidenceBundle": "data/gate1",
+    "fixture": "data/gate1/preview.json",
+    "fixtureId": "livewire-gate1-read-only-preview-v2",
+    "generatedBy": "Live Wire Gate 1 deterministic local builders",
+    "sourceCaptureSha256": "09181c5edde7f1b2e9fd718b3d0d449f432e792aadb2d6fd9ba09f848b0bef8a"
+  },
+  "requiredAuthority": [],
+  "routine": {
+    "activationAuthorized": false,
+    "candidateOnly": true,
+    "certified": false
+  },
+  "semanticValidation": {
+    "editorialSchemaVersion": "livewire.editorial.v2",
+    "policyModule": "editorial.policy",
+    "requiredTests": [
+      "tests.test_gate1_contracts",
+      "tests.test_gate1_server",
+      "tests.test_gate1_platform_boundary",
+      "tests.test_public_edition"
+    ],
+    "schemaOnlyAuthoritative": false
+  },
+  "sideEffects": [],
+  "supportsPreview": true,
+  "supportsRollback": false,
+  "version": "2.0.0-gate1"
+}

@@ -1,0 +1,7 @@
+# Direct dependencies for the public edition. Demo mode needs these plus the stdlib.
+anthropic==0.112.0
+certifi>=2024.2.2
+pydantic>=2.7,<3
+python-dotenv==1.2.1
+pytest>=8.0
+requests==2.32.5

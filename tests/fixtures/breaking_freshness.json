@@ -1,0 +1,35 @@
+{
+  "now": 5000.0,
+  "wire": [
+    {
+      "headline": "Breaking: Northstar Energy shares plunge after product recall",
+      "source": "Fixture Wire",
+      "url": "https://example.invalid/fresh",
+      "category": "markets",
+      "ts": 4900.0,
+      "published_at": "fixture-fresh"
+    },
+    {
+      "headline": "Breaking: Oldtown shares plunge after product recall",
+      "source": "Fixture Wire",
+      "url": "https://example.invalid/stale",
+      "category": "markets",
+      "ts": 3000.0,
+      "published_at": "fixture-stale"
+    }
+  ],
+  "rumors": [
+    {
+      "id": "fixture-high-jump-rumor",
+      "headline": "Unverified Northstar Energy takeover chatter",
+      "source": "Rumor desk",
+      "category": "rumor",
+      "first_seen": 4800.0,
+      "last_seen": 4950.0,
+      "jump_score": 99,
+      "status": "new"
+    }
+  ],
+  "expected_headline": "Breaking: Northstar Energy shares plunge after product recall",
+  "expected_source_ts": 4900.0
+}

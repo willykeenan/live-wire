@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="theme-color" content="#0E1117"/>
+<title>Live Wire — Satirical AI News Studio</title>
+<style>
+  :root{
+    --bg:#0E1117; --panel:#161B22; --panel2:#1B212B; --bord:#232A33; --bord2:#2E3742;
+    --tx:#E6EAF0; --tx2:#9AA4B2; --tx3:#6B7480;
+    --green:#1D9E75; --amber:#EF9F27; --red:#E24B4A; --gold:#E0A82E; --blue:#378ADD;
+    --live:#E24B4A; --chyron-bg:rgba(14,17,23,.86);
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--sans);
+       -webkit-font-smoothing:antialiased;font-size:14px;line-height:1.5}
+  body{padding-bottom:54px}
+  a{color:inherit}
+  .hidden{display:none !important}
+  .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+           overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes lw-livepulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(226,75,74,.6)}
+                          50%{opacity:.5;box-shadow:0 0 0 6px rgba(226,75,74,0)}}
+  @keyframes lw-sway{0%{transform:translateX(0) rotate(0)}50%{transform:translateX(3px) rotate(.5deg)}100%{transform:translateX(0) rotate(0)}}
+  @keyframes lw-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  @keyframes lw-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.012)}}
+
+  /* ---- top bar ---- */
+  header{display:flex;align-items:center;gap:14px;padding:14px 22px;border-bottom:1px solid var(--bord);
+         position:sticky;top:0;background:rgba(14,17,23,.92);backdrop-filter:blur(8px);z-index:20}
+  .brand{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:600;letter-spacing:.2px}
+  .brand img{width:30px;height:30px;border-radius:8px}
+  .livebadge{display:flex;align-items:center;gap:6px;font:600 11px/1 var(--sans);
+             letter-spacing:.6px;color:#F09595;text-transform:uppercase}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+  .livedot{background:var(--live);animation:lw-livepulse 1.6s ease-in-out infinite}
+  .alphadot{background:var(--amber)}
+  .trustbar{position:fixed;left:0;right:0;bottom:0;z-index:75;display:flex;align-items:center;justify-content:center;
+            gap:9px;min-height:42px;padding:8px 18px;background:rgba(12,16,20,.97);border-top:1px solid var(--bord2);
+            color:var(--tx2);font-size:11.5px;line-height:1.35;text-align:center;backdrop-filter:blur(12px)}
+  .trustbar strong{color:#F0C780;font-size:10.5px;letter-spacing:.7px;text-transform:uppercase}
+  .trustbar a{color:#9FCBFF;text-underline-offset:2px}
+  .tabs{display:flex;gap:6px;margin-left:14px}
+  .meta{margin-left:auto;display:flex;align-items:center;gap:16px;color:var(--tx2);font-size:12px;font-family:var(--mono)}
+  .seg{font-size:12.5px;padding:6px 13px;border-radius:8px;border:1px solid var(--bord);background:transparent;color:var(--tx2);cursor:pointer;transition:background .15s,color .15s,border-color .2s}
+  .seg:hover{color:var(--tx)}
+  .seg.on{border-color:var(--blue);background:rgba(55,138,221,.14);color:#9FCBFF}
+
+
+  /* ---- shared ---- */
+  .pill{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;letter-spacing:.4px;text-transform:uppercase}
+  .tag{font-size:10.5px;padding:2px 7px;border-radius:6px;background:#0c1014;color:var(--tx2);border:1px solid var(--bord)}
+  .tag.amber{color:#F0C780;border-color:#5c4516;background:rgba(239,159,39,.10)}
+  .tag.blue{color:#9FCBFF;border-color:#27435f}
+  .row{display:flex;align-items:center;gap:8px}
+  .subrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--tx2)}
+  .spinner{width:16px;height:16px;border:2px solid var(--bord2);border-top-color:var(--tx2);border-radius:50%;
+           display:inline-block;animation:spin .8s linear infinite;vertical-align:-3px;margin-right:8px}
+  .empty{padding:60px 22px;text-align:center;color:var(--tx3)}
+  .banner{padding:9px 22px;font-size:12.5px}
+  .banner.dry{background:rgba(239,159,39,.10);color:#F0C780;border-bottom:1px solid rgba(239,159,39,.25)}
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--panel2);color:var(--tx);
+         border:1px solid var(--bord2);padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;
+         transition:opacity .2s;pointer-events:none;z-index:50}
+  #toast.show{opacity:1}
+
+  /* news marquee (ticker + chyron headline) */
+  .newsmarquee{overflow:hidden;width:100%;mask-image:linear-gradient(90deg,transparent,#000 2%,#000 98%,transparent)}
+  .newstrack{display:flex;width:max-content;animation:roll var(--dur,120s) linear infinite;will-change:transform}
+  .newsmarquee:hover .newstrack{animation-play-state:paused}
+
+  /* ---- avatar engine ---- */
+  .avatar{position:relative;width:100%;height:100%}
+  .avatar-rig,.avatar-base,.avatar-eyes,.avatar-mouth{position:absolute;inset:0}
+  .avatar-base{z-index:0} .avatar-eyes{z-index:1} .avatar-mouth{z-index:2}
+  .avatar-rig{transform-origin:50% 95%;will-change:transform;animation:lw-sway 6s ease-in-out infinite}
+  .avatar-rig.speaking{animation:lw-sway 6s ease-in-out infinite, lw-bob 1.5s ease-in-out infinite}
+  .svg-breathe{animation:lw-breathe 4s ease-in-out infinite;transform-origin:50% 100%}
+  .avatar-svg{width:100%;height:100%;display:block}
+  .eye-white{transition:ry .07s linear}
+  .pupil{transition:r .07s linear, transform .25s ease}
+
+  /* ---- header control buttons ---- */
+  .iconbtn{font-size:14px;line-height:1;padding:5px 8px;border-radius:8px;border:1px solid var(--bord);
+           background:transparent;color:var(--tx2);cursor:pointer;transition:background .15s,color .15s,border-color .2s}
+  .iconbtn:hover{background:var(--panel2);color:var(--tx)}
+  .iconbtn.on{border-color:var(--blue);background:rgba(55,138,221,.16);color:#9FCBFF}
+  .iconbtn.muted{border-color:var(--red);background:rgba(226,75,74,.14);color:#F09595}
+
+  /* ---- B-roll (cutaways / on-location) ---- */
+  .broll-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;
+            filter:blur(16px) brightness(.42) saturate(1.1);opacity:0;transition:opacity .6s;transform:scale(1.08)}
+  .broll-bg.on{opacity:.6}
+  .broll-full{position:absolute;inset:0;z-index:4;background-size:cover;background-position:center;
+              opacity:0;transition:opacity .5s;pointer-events:none}
+  .broll-full.on{opacity:1}
+  .broll-vid{position:absolute;inset:0;z-index:4;width:100%;height:100%;object-fit:cover;background:#000;
+             opacity:0;transition:opacity .5s;pointer-events:none}
+  .broll-vid.on{opacity:1}
+  .broll-credit{position:absolute;left:14px;top:46px;z-index:5;max-width:58%;
+                font:600 9.5px/1.4 var(--sans);letter-spacing:.4px;text-transform:uppercase;color:var(--tx2);
+                background:rgba(14,17,23,.72);padding:3px 7px;border-radius:5px;opacity:0;transition:opacity .4s}
+  .broll-credit.on{opacity:1}
+  .broll-ots{position:absolute;top:44px;right:14px;z-index:5;width:42%;max-width:240px;border:2px solid var(--bord2);
+             border-radius:9px;overflow:hidden;background:#0c1014;box-shadow:0 8px 26px rgba(0,0,0,.55);
+             opacity:0;transform:translateY(-8px) scale(.96);transition:opacity .4s,transform .4s;pointer-events:none}
+  .broll-ots.on{opacity:1;transform:none}
+  .broll-ots img{display:block;width:100%;height:auto;max-height:150px;object-fit:cover}
+  .broll-ots .src{display:block;font:600 9.5px/1.5 var(--sans);letter-spacing:.5px;text-transform:uppercase;
+                  color:var(--tx2);background:rgba(14,17,23,.85);padding:3px 7px}
+
+  /* ---- pop-out mini player ---- */
+  #pip{position:fixed;right:20px;bottom:20px;width:320px;height:300px;z-index:60;display:none;flex-direction:column;
+       border-radius:12px;overflow:hidden;border:1px solid var(--bord2);box-shadow:0 14px 44px rgba(0,0,0,.6);
+       background:#000;resize:both;min-width:200px;min-height:170px;max-width:92vw;max-height:92vh}
+  #pip.on{display:flex}
+  #pip .pip-bar{display:flex;align-items:center;gap:7px;padding:6px 9px;background:var(--panel2);flex:0 0 auto;
+                font:600 11px/1 var(--sans);color:var(--tx2);letter-spacing:.3px;cursor:move;user-select:none}
+  #pip #pipDock{margin-left:auto;cursor:pointer;font-size:13px;color:var(--tx2)}
+  #pip #pipDock:hover{color:var(--tx)}
+  #pip .pip-frame{position:relative;flex:1 1 auto;min-height:0;overflow:hidden}
+  .anchor-frame.in-pip{aspect-ratio:auto;max-height:none;height:100%;width:100%;border:0;border-radius:0;margin:0}
+
+  /* ---- channel selector ---- */
+  .channelbar{display:flex;gap:8px;padding:10px 22px;border-bottom:1px solid var(--bord);background:var(--panel)}
+  .chan{font:600 13px/1 var(--sans);padding:8px 16px;border-radius:9px;border:1px solid var(--bord);
+        background:transparent;color:var(--tx2);cursor:pointer;transition:background .15s,color .15s,border-color .2s}
+  .chan:hover{color:var(--tx)}
+  .chan.on{border-color:var(--blue);background:rgba(55,138,221,.16);color:#9FCBFF}
+
+  /* ---- On Air stage ---- */
+  .stage{display:flex;flex-direction:column;gap:0}
+  .stage-grid{display:grid;grid-template-columns:1fr 320px;gap:14px;padding:16px 22px}
+  @media(max-width:880px){.stage-grid{grid-template-columns:1fr}}
+  .anchor-frame{position:relative;background:radial-gradient(120% 90% at 50% 18%,#1a2230,#0c1014);
+                border:1px solid var(--bord);border-radius:14px;overflow:hidden;aspect-ratio:4/5;
+                max-height:74vh;margin:0 auto;width:100%;display:flex;align-items:flex-end;justify-content:center}
+  .anchor-frame .avatar{position:absolute;inset:0;z-index:1}
+  .onair-chip{position:absolute;top:12px;left:12px;z-index:6;display:flex;align-items:center;gap:6px;
+              background:rgba(226,75,74,.16);border:1px solid var(--red);color:#F09595;
+              font:600 10.5px/1 var(--sans);letter-spacing:.6px;text-transform:uppercase;padding:5px 9px;border-radius:7px}
+  .net-chip{position:absolute;top:12px;right:12px;z-index:6;font:600 10.5px/1 var(--mono);
+            color:var(--tx2);background:rgba(14,17,23,.6);border:1px solid var(--bord);padding:5px 9px;border-radius:7px}
+  .caption{position:absolute;left:0;right:0;bottom:104px;text-align:center;padding:0 30px;z-index:5;
+           font-size:18px;line-height:1.45;text-shadow:0 2px 12px #000,0 0 30px #000;min-height:2.7em}
+  .caption .spoken{color:#fff} .caption .ahead{color:var(--tx3)}
+  .chyron{position:absolute;left:0;right:0;bottom:0;z-index:6;background:var(--chyron-bg);
+          backdrop-filter:blur(8px);border-top:1px solid var(--bord);padding:10px 16px;
+          display:flex;flex-direction:column;gap:7px}
+  .chyron-id{display:flex;align-items:baseline;gap:10px}
+  .chyron-kick{font:700 10px/1 var(--sans);letter-spacing:.8px;color:#fff;background:var(--red);padding:4px 7px;border-radius:5px;text-transform:uppercase}
+  .chyron-name{font-size:16px;font-weight:600;letter-spacing:.2px}
+  .chyron-title{font-size:11.5px;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px}
+  .chyron-head{height:18px;border-top:1px solid var(--bord);padding-top:2px}
+  .chyron-track{font-size:12.5px;color:var(--tx2);gap:50px;align-items:center;--dur:30s}
+
+  .rundown{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 14px;align-self:start}
+  .rundown-hdr{font-size:12px;color:var(--tx2);letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px;display:flex;gap:8px;align-items:center}
+  .rundown ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .rundown li{display:flex;gap:9px;padding:8px 10px;border:1px solid var(--bord);border-radius:9px;background:#0c1014;font-size:12px;color:var(--tx2);transition:background .2s,border-color .2s}
+  .rundown li.live{border-color:var(--blue);background:rgba(55,138,221,.12);color:var(--tx)}
+  .rundown li.done{opacity:.45}
+  .rundown .rd-num{font-family:var(--mono);color:var(--tx3)}
+  .rundown .rd-txt{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .rundown .rd-beat{margin-left:auto;flex:0 0 auto}
+
+
+  .ticker{margin:0;border-top:1px solid var(--bord);border-bottom:1px solid var(--bord);background:var(--panel)}
+  .ticker .newstrack{padding:9px 0;font-size:12.5px;color:var(--tx2);gap:0;--dur:140s}
+  .ticker .ti{display:inline-flex;align-items:center;gap:8px;padding:0 26px;border-right:1px solid var(--bord)}
+  .ti .src{color:var(--tx3);font-family:var(--mono);font-size:11px}
+  .ti .dotk{width:6px;height:6px;border-radius:50%}
+
+  /* program bar (on now / next) */
+  .programbar{display:flex;align-items:center;gap:14px;padding:11px 22px;border-bottom:1px solid var(--bord);
+              background:linear-gradient(180deg,var(--panel2),var(--panel));flex-wrap:wrap}
+  .pb-now{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600}
+  .pb-live{color:#F09595;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase}
+  .pb-anchors{color:var(--tx2);font-size:12.5px}
+  .pb-next{margin-left:auto;color:var(--tx3);font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+  .pb-next .pb-tag{color:var(--tx2);text-transform:none;letter-spacing:0}
+  /* schedule grid (TV guide) */
+  .schedgrid{display:flex;flex-direction:column;gap:8px;padding:18px 22px}
+  .sched-row{display:grid;grid-template-columns:118px 1fr auto;gap:14px;align-items:center;
+             padding:11px 14px;border:1px solid var(--bord);border-radius:11px;background:var(--panel)}
+  .sched-row.live{border-color:var(--red);background:rgba(226,75,74,.08)}
+  .sched-time{font-family:var(--mono);font-size:12px;color:var(--tx2)}
+  .sched-name{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .sched-tag{font-size:12px;color:var(--tx3);margin-top:2px}
+  .sched-right{text-align:right}
+  .sched-anchors{font-size:12px;color:var(--tx2)}
+  .sat{display:inline-block;font-size:10px;padding:2px 6px;border-radius:5px;border:1px solid var(--bord2);color:var(--tx2);margin-top:4px}
+  .stage-controls{display:flex;align-items:center;gap:10px;padding:10px 22px;color:var(--tx2);font-size:12px;border-bottom:1px solid var(--bord)}
+  .btn{font-family:var(--sans);font-size:12px;padding:7px 12px;border-radius:8px;border:1px solid var(--bord2);background:transparent;color:var(--tx2);cursor:pointer;transition:background .15s,color .15s}
+  .btn:hover{background:var(--panel2);color:var(--tx)}
+  .btn:disabled{cursor:not-allowed;opacity:.66;background:rgba(239,159,39,.06);border-color:#5c4516;color:#F0C780}
+  :where(button,a,[tabindex]):focus-visible{outline:3px solid #9FCBFF;outline-offset:3px}
+
+  .maintenance-wrap{max-width:760px;margin:0 auto;padding:54px 22px}
+  .maintenance-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(239,159,39,.09),var(--panel) 42%);
+                    border:1px solid #5c4516;border-radius:18px;padding:28px}
+  .maintenance-card::before{content:"";position:absolute;right:-80px;top:-100px;width:240px;height:240px;border-radius:50%;
+                            background:radial-gradient(circle,rgba(239,159,39,.16),transparent 68%);pointer-events:none}
+  .maintenance-kicker{font:700 10.5px/1 var(--sans);letter-spacing:1px;text-transform:uppercase;color:#F0C780;margin-bottom:12px}
+  .maintenance-card h2{font-size:26px;line-height:1.2;margin:0 0 10px;letter-spacing:-.3px}
+  .maintenance-card p{max-width:620px;color:var(--tx2);font-size:14px;line-height:1.65;margin:0}
+  .maintenance-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+  .maintenance-link{display:inline-flex;margin-top:22px;color:#9FCBFF;text-decoration:none;border-bottom:1px solid rgba(159,203,255,.4)}
+  .maintenance-link:hover{color:#cfe6ff;border-color:#cfe6ff}
+
+  /* ---- Wire tab ---- */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;padding:12px 22px;border-bottom:1px solid var(--bord)}
+  .wirefeed{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;padding:18px 22px}
+  .wire-intro{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:18px 22px 4px}
+  .wire-intro h1{font-size:22px;line-height:1.2;margin:0 0 5px;letter-spacing:-.25px}
+  .wire-intro p{max-width:700px;color:var(--tx2);font-size:12.5px;line-height:1.55;margin:0}
+  .wire-intro-actions{display:flex;gap:8px;flex-wrap:wrap;flex:0 0 auto}
+  .card{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:13px 15px;cursor:pointer;
+        transition:transform .12s ease,border-color .2s ease,background .2s ease;display:flex;flex-direction:column;gap:8px}
+  .card:hover{transform:translateY(-2px);border-color:var(--bord2);background:var(--panel2)}
+  .story-card{cursor:default;position:relative}
+  .story-card:hover{transform:none}
+  .story-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .story-state{font:750 9.5px/1 var(--sans);letter-spacing:.8px;text-transform:uppercase;border:1px solid #34506f;
+               color:#9FCBFF;background:rgba(83,151,222,.1);border-radius:999px;padding:5px 8px}
+  .story-state.corrected{color:#F0C780;border-color:#5c4516;background:rgba(239,159,39,.09)}
+  .story-freshness{font:500 10px/1.3 var(--mono);color:var(--tx3)}
+  .story-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:4px}
+  .story-source{font-size:11px;color:#9FCBFF;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .story-source:hover{text-decoration:underline}
+  .receipts-btn{font:750 10.5px/1 var(--sans);letter-spacing:.25px;border:1px solid #456f95;background:#17283a;color:#cfe6ff;
+                padding:7px 10px;border-radius:8px;cursor:pointer;white-space:nowrap}
+  .receipts-btn:hover{background:#20384f;border-color:#6f9ac0}
+  .correction-note{font-size:11.5px;line-height:1.45;color:#F0C780;border-left:2px solid #7b5a17;padding-left:8px}
+
+  /* ---- Inspectable Receipts / corrections sheet ---- */
+  .receipt-backdrop{position:fixed;inset:0;z-index:110;background:rgba(4,7,11,.72);display:flex;justify-content:flex-end}
+  .receipt-backdrop[hidden]{display:none}
+  .receipt-panel{width:min(620px,100%);height:100%;overflow:auto;background:#11161d;border-left:1px solid var(--bord2);
+                 box-shadow:-24px 0 80px rgba(0,0,0,.45);padding:0 22px 34px}
+  .receipt-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;
+                margin:0 -22px;padding:17px 22px;background:rgba(17,22,29,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--bord)}
+  .receipt-eyebrow{font:800 10px/1 var(--sans);letter-spacing:1.1px;text-transform:uppercase;color:#9FCBFF}
+  .receipt-head h2{font-size:18px;margin:4px 0 0}
+  .receipt-close{width:38px;height:38px;border-radius:10px;border:1px solid var(--bord2);background:var(--panel);color:var(--tx);
+                 font-size:22px;line-height:1;cursor:pointer}
+  .receipt-body{padding-top:20px}
+  .receipt-section{padding:16px 0;border-bottom:1px solid var(--bord)}
+  .receipt-section:last-child{border-bottom:0}
+  .receipt-section h3{font:800 10px/1 var(--sans);letter-spacing:1px;text-transform:uppercase;color:var(--tx3);margin:0 0 10px}
+  .receipt-claim{font:650 18px/1.45 var(--sans);margin:0;color:var(--tx)}
+  .receipt-grid{display:grid;grid-template-columns:minmax(120px,.7fr) minmax(0,1.3fr);gap:8px 16px;font-size:12px;line-height:1.5}
+  .receipt-grid dt{color:var(--tx3)} .receipt-grid dd{margin:0;color:var(--tx2);overflow-wrap:anywhere}
+  .receipt-source-row,.receipt-history-row,.receipt-correction-row{padding:10px 0;border-top:1px solid rgba(46,55,66,.62);font-size:12px;line-height:1.55}
+  .receipt-source-row:first-child,.receipt-history-row:first-child,.receipt-correction-row:first-child{border-top:0;padding-top:0}
+  .receipt-source-row a{color:#9FCBFF;overflow-wrap:anywhere}
+  .receipt-status{padding:11px 12px;border:1px solid #34506f;background:rgba(83,151,222,.08);border-radius:10px;color:#cfe6ff;
+                  font-size:12px;line-height:1.55}
+  .receipt-status.warn{border-color:#5c4516;background:rgba(239,159,39,.07);color:#F0C780}
+  .receipt-empty{padding:40px 10px;text-align:center;color:var(--tx2);font-size:13px;line-height:1.65}
+  body.receipt-open{overflow:hidden}
+  .nhead{font-size:13.5px;line-height:1.4;color:var(--tx)}
+  .nmeta{font-size:11px;color:var(--tx3)}
+  .nsum{font-size:12px;color:var(--tx2);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* ---- Shared status bar (used by the source-intel preview) ---- */
+  .rumors-bar{display:flex;align-items:center;gap:12px;padding:12px 22px;border-bottom:1px solid var(--bord);flex-wrap:wrap}
+  .rumor-legend{display:flex;gap:12px;margin-left:auto;align-items:center;font-size:11px;color:var(--tx2)}
+  .rumor-legend .lg{display:inline-flex;align-items:center;gap:5px}
+  /* Intel tab — primary-source signal */
+  .intel-title{font:700 13px/1 var(--sans);color:var(--tx)}
+  .intel-board{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;padding:18px 22px}
+  .intel-card{background:var(--panel);border:1px solid var(--bord);border-left:3px solid var(--bord2);border-radius:12px;
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:transform .12s,border-color .2s}
+  .intel-card[data-url]:hover{transform:translateY(-2px);border-color:var(--bord2)}
+  .intel-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .intel-edge{font:700 10.5px/1 var(--mono);letter-spacing:.5px;padding:3px 7px;border:1px solid;border-radius:6px}
+  .intel-src{font-size:10.5px}
+  .intel-tag{font:600 10px/1 var(--sans);letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:6px;border:1px solid}
+  .intel-tag.ahead{color:#6FE3B6;border-color:#1f5e47;background:rgba(29,158,117,.12)}
+  .intel-tag.covered{color:var(--tx3);border-color:var(--bord2);background:#0c1014}
+  .intel-head{font-size:13.5px;font-weight:600;line-height:1.4;color:var(--tx)}
+  .intel-detail{font-size:12px;color:var(--tx2);line-height:1.45}
+  .intel-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:1px}
+  .intel-ents{display:flex;gap:5px;flex-wrap:wrap;margin-left:auto}
+  /* Intel Desk — deep AI investigations (span full width, featured) */
+  .intel-brief{grid-column:1/-1;background:linear-gradient(180deg,rgba(124,108,255,.06),var(--panel));
+    border:1px solid var(--bord2);border-left:3px solid #7C6CFF;border-radius:14px;padding:16px 18px;
+    display:flex;flex-direction:column;gap:9px;cursor:pointer;transition:border-color .2s}
+  .intel-brief[data-url]:hover{border-color:#7C6CFF}
+  .ib-kick{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font:800 10.5px/1 var(--sans);letter-spacing:1.2px;color:#B9AEFF}
+  .ib-conv{font:700 9.5px/1 var(--sans);letter-spacing:.6px;text-transform:uppercase;padding:3px 7px;border:1px solid;border-radius:6px}
+  .ib-conf{font:600 9.5px/1 var(--sans);letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:6px;border:1px solid var(--bord2);color:var(--tx2)}
+  .ib-conf.corroborated{color:#6FE3B6;border-color:#1f5e47} .ib-conf.unverified{color:#F0C780;border-color:#5c4516}
+  .ib-head{font-size:17px;font-weight:700;line-height:1.28;color:var(--tx);letter-spacing:-.01em}
+  .ib-signal{font-size:12px;color:var(--tx2);line-height:1.5}
+  .ib-read{font-size:13.5px;color:var(--tx);line-height:1.6}
+  .ib-gap{font-size:12.5px;color:#F0C780;line-height:1.5;border-left:2px solid #5c4516;padding-left:9px}
+  .ib-watch{font-size:12.5px;color:var(--tx2);line-height:1.5}
+  .ib-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid var(--bord);padding-top:9px;margin-top:1px}
+  .ib-signal b,.ib-gap b,.ib-watch b{color:var(--tx);font-weight:600}
+  @media(max-width:680px){.intel-board{grid-template-columns:1fr;padding:12px}.ib-head{font-size:15.5px}}
+  .btn.scanning{opacity:.7}
+  .spin-i{display:inline-block;animation:spin .8s linear infinite}
+  .cardbtns{margin-top:2px}
+
+  /* Preserve the same information without compulsory broadcast motion. */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+    .newsmarquee{overflow-x:auto;scrollbar-width:thin}
+    .newstrack{animation:none!important;transform:none!important}
+    .avatar-rig,.avatar-rig.speaking,.svg-breathe,.livedot,.spinner,.spin-i{animation:none!important}
+  }
+
+  /* ===================== MOBILE (phone-native) ===================== */
+  .mtabs{display:none}
+  @media (max-width:680px){
+    /* header: compact — brand + pillar; tabs move to the bottom bar */
+    header{flex-wrap:wrap;gap:8px;padding:9px 12px}
+    .brand{font-size:15px;gap:8px} .brand img{width:24px;height:24px}
+    .livebadge{display:none}
+    .tabs{display:none}
+    .pillar{margin-left:0;order:2;padding:2px} .pbtn{padding:6px 11px;font-size:12px}
+    .meta{margin-left:auto;order:3;gap:10px}
+    #status,#clock,#pipBtn{display:none}
+    body{padding-bottom:calc(116px + env(safe-area-inset-bottom))}
+    .trustbar{bottom:calc(70px + env(safe-area-inset-bottom));min-height:42px;padding:6px 10px;font-size:10.5px}
+
+    /* bottom tab bar — the native nav */
+    .mtabs{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:70;
+           background:rgba(14,17,23,.97);backdrop-filter:blur(12px);border-top:1px solid var(--bord);
+           padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+    .mtab{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;
+          border:0;color:var(--tx3);font:600 10px/1 var(--sans);padding:7px 2px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .mtab .mi{font-size:19px;line-height:1}
+    .mtab.on{color:#9FCBFF}
+    .mtab.hidden{display:none}
+
+    /* On Air — anchor fills the screen, app-style */
+    .stage-grid{grid-template-columns:1fr;padding:10px;gap:10px}
+    .anchor-frame{aspect-ratio:3/4;max-height:none;border-radius:12px}
+    .caption{font-size:15px;line-height:1.4;bottom:92px;padding:0 16px;min-height:2.4em}
+    .net-chip{display:none}
+    .chyron{padding:8px 12px;gap:5px}
+    .chyron-name{font-size:14px} .chyron-title{display:none}
+    .chyron-kick{font-size:9px;padding:3px 6px}
+    .programbar{padding:9px 12px;gap:6px}
+    .pb-now{font-size:14px} .pb-anchors{font-size:11.5px} .pb-next{display:none}
+    .stage-controls{padding:8px 12px} #airStatus{font-size:11px;line-height:1.3}
+    #ticker{display:none}   /* the chyron marquee already carries the live headline */
+
+    /* feeds → single column, tighter */
+    .wirefeed{grid-template-columns:1fr;padding:12px;gap:10px}
+    .wire-intro{padding:16px 12px 4px;display:block}.wire-intro-actions{margin-top:12px}
+    .receipt-panel{border-left:0;padding-left:16px;padding-right:16px}.receipt-head{margin:0 -16px;padding:15px 16px}
+    .card{padding:12px 13px}
+    .filters,.rumors-bar{padding:10px 12px;gap:8px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .filters::-webkit-scrollbar,.rumors-bar::-webkit-scrollbar{display:none}
+    .filters .seg{flex:0 0 auto}
+    .rumor-legend{display:none}
+    .schedgrid{padding:12px}
+    .sched-row{grid-template-columns:78px 1fr;gap:10px} .sched-right{display:none}
+
+    /* Wire Report → full-screen sheet */
+    .wr-modal{padding:0;align-items:stretch}
+    .wr-card{border-radius:0;min-height:100vh;width:100%;max-width:none;padding:22px 18px 40px}
+    .wr-head{font-size:21px} .wr-dek{font-size:14.5px} .wr-body p{font-size:15px}
+
+    /* pip is awkward on phone — keep it out of the way if ever shown */
+    #pip{width:64vw;height:auto;right:8px;bottom:calc(124px + env(safe-area-inset-bottom))}
+    /* keep toasts above and clear of the bottom tab bar */
+    #toast{z-index:90;bottom:calc(84px + env(safe-area-inset-bottom))}
+  }
+</style>
+</head>
+<body data-tab="onair">
+<header>
+  <div class="brand"><img src="/assets/logo.svg" alt="Live Wire"/><span>live wire</span></div>
+  <span class="livebadge" style="color:#F0C780"><span class="dot alphadot"></span> SATIRE · demo</span>
+  <nav class="tabs" aria-label="Primary preview navigation">
+    <button class="seg on" data-tab="onair">On air</button>
+    <button class="seg" data-tab="wire">Wire</button>
+    <button class="seg" data-tab="rumors">Rumors</button>
+    <button class="seg" data-tab="intel">Sources</button>
+    <button class="seg" data-tab="schedule">Schedule</button>
+  </nav>
+  <div class="meta">
+    <span id="status"></span>
+    <button id="pipBtn" class="iconbtn" title="Pop out the anchor (watch while on other tabs)" aria-label="Pop out the preview anchor">⧉</button>
+    <span id="clock"></span>
+  </div>
+</header>
+
+<main id="mainContent">
+<!-- ================= ON AIR ================= -->
+<section id="tab-onair" class="stage">
+  <div id="programBar" class="programbar">
+    <div class="pb-now"><span class="pb-live" style="color:#F0C780">SATIRE</span> <span id="pbName">Live Wire</span></div>
+    <span id="pbAnchors" class="pb-anchors"></span>
+    <div class="pb-next">NEXT&nbsp; <span id="pbNext" class="pb-tag"></span></div>
+  </div>
+
+  <div class="stage-controls">
+    <button id="playBtn" class="btn">▶ Start demo</button>
+    <span id="airStatus">Demo mode: canned satire scripts, cartoon mouth sync, no API keys.</span>
+  </div>
+
+  <div class="stage-grid">
+    <div class="anchor-frame">
+      <div class="broll-bg" id="brollBg"></div>
+      <span class="onair-chip" style="border-color:#5c4516;background:rgba(239,159,39,.12);color:#F0C780"><span class="dot alphadot"></span> SATIRE</span>
+      <span class="net-chip">LWN · DEMO</span>
+      <div class="avatar" id="avatar" data-mode="svg"></div>
+      <div class="broll-full" id="brollFull"></div>
+      <video class="broll-vid" id="brollVideo" muted loop playsinline preload="none"></video>
+      <iframe class="broll-vid" id="brollFrame" allow="autoplay; encrypted-media" frameborder="0"></iframe>
+      <div class="broll-ots" id="brollOts"><img alt="" onerror="this.style.display='none'"/><span class="src"></span></div>
+      <div class="broll-credit" id="brollCredit"></div>
+      <div class="caption" id="caption"></div>
+      <div class="chyron">
+        <div class="chyron-id">
+          <span class="chyron-kick" id="anchorKick" style="background:var(--amber);color:#1a1205">SATIRE</span>
+          <span class="chyron-name" id="anchorName">Live Wire</span>
+          <span class="chyron-title" id="anchorTitle">AI newsroom prototype</span>
+        </div>
+        <div class="chyron-head newsmarquee">
+          <div class="newstrack chyron-track" id="chyronHead"></div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="rundown">
+      <div class="rundown-hdr">Up Next · Rundown <span class="tag" id="rdMode" style="margin-left:auto"></span></div>
+      <ol id="rundownList"><li><span class="spinner"></span>building the rundown…</li></ol>
+    </aside>
+  </div>
+
+  <div id="ticker" class="ticker newsmarquee">
+    <div class="newstrack" id="tickerTrack"></div>
+  </div>
+</section>
+
+<!-- ================= WIRE ================= -->
+<section id="tab-wire" class="hidden">
+  <div class="wire-intro">
+    <div>
+      <div class="receipt-eyebrow">Read-only evidence preview</div>
+      <h1>Stories that show their work</h1>
+      <p>These sample records preserve what a source reported, when Live Wire first saw it, and every later correction. “Reported” is not a truth verdict. They are a bundled fixture of invented stories: reading them performs no generation, external action, or spend.</p>
+    </div>
+    <div class="wire-intro-actions">
+      <button id="correctionsBtn" class="btn" type="button">Corrections ledger</button>
+    </div>
+  </div>
+  <div id="wireFilters" class="filters"></div>
+  <div id="wireStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Loading inspectable Stories.</div>
+  <div id="wireFeed" class="wirefeed" aria-busy="true"><div class="empty"><span class="spinner"></span>loading inspectable Stories…</div></div>
+</section>
+
+<!-- ================= RUMORS ================= -->
+<section id="tab-rumors" class="hidden">
+  <div class="maintenance-wrap">
+    <div class="maintenance-card" role="status" aria-live="polite">
+      <div class="maintenance-kicker">Standards hold · fail closed</div>
+      <h2>Rumor desk is off by default</h2>
+      <p>X/Grok rumor scanning is optional and stays off unless an operator sets LIVE_WIRE_RUMORS_ENABLED=1. Rumors are never presented as confirmed. Satire must stay labelled. Operators are responsible for anything they broadcast.</p>
+      <div class="maintenance-meta">
+        <span class="tag amber">Off by default</span>
+        <span class="tag">Empty archive</span>
+        <span class="tag">Never auto-confirm</span>
+      </div>
+      <a class="maintenance-link" href="/corrections/2026-07-11-automated-rumor-confirmations/">Read the July 11 correction and remediation note →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTEL ================= -->
+<section id="tab-intel" class="hidden">
+  <div class="rumors-bar">
+    <span class="intel-title">🛰️ Public-source monitor</span>
+    <span id="intelStatus" class="nmeta"></span>
+    <span class="rumor-legend"><span class="lg" style="color:var(--tx3)">Public primary sources · filings · court records · seismographs · government alerts</span></span>
+  </div>
+  <div id="intelBoard" class="intel-board"><div class="empty"><span class="spinner"></span>loading public-source links…</div></div>
+</section>
+
+<!-- ================= SCHEDULE ================= -->
+<section id="tab-schedule" class="hidden">
+  <div class="filters">
+    <button class="seg on" data-day="weekday">Weekday</button>
+    <button class="seg" data-day="weekend">Weekend</button>
+    <span id="schedTz" class="nmeta" style="margin-left:auto"></span>
+  </div>
+  <div id="schedGrid" class="schedgrid"><div class="empty"><span class="spinner"></span>loading the grid…</div></div>
+</section>
+
+</main>
+
+<div id="receiptBackdrop" class="receipt-backdrop" hidden>
+  <aside id="receiptPanel" class="receipt-panel" role="dialog" aria-modal="true" aria-labelledby="receiptTitle" tabindex="-1">
+    <div class="receipt-head">
+      <div><div class="receipt-eyebrow" id="receiptEyebrow">Receipts</div><h2 id="receiptTitle">Story evidence</h2></div>
+      <button id="receiptClose" class="receipt-close" type="button" aria-label="Close Receipts">×</button>
+    </div>
+    <div id="receiptBody" class="receipt-body" aria-live="polite"></div>
+  </aside>
+</div>
+
+<div id="pip">
+  <div class="pip-bar" id="pipBar"><span class="dot alphadot"></span> Visual preview · Live Wire
+    <span id="pipDock" title="Dock back">▣</span></div>
+  <div class="pip-frame" id="pipFrame"></div>
+</div>
+
+<!-- bottom tab bar (phone only) -->
+<nav class="mtabs" id="mtabs" aria-label="Mobile preview navigation">
+  <button class="mtab on" data-tab="onair"><span class="mi">📺</span>On air</button>
+  <button class="mtab" data-tab="wire"><span class="mi">📰</span>Wire</button>
+  <button class="mtab" data-tab="rumors"><span class="mi">🔥</span>Rumors</button>
+  <button class="mtab" data-tab="intel"><span class="mi">🛰️</span>Sources</button>
+  <button class="mtab" data-tab="schedule"><span class="mi">🗓️</span>Guide</button>
+</nav>
+
+<div id="toast"></div>
+
+<aside class="trustbar" aria-label="Product disclosure">
+  <strong>SATIRE</strong>
+  <span>AI-generated anchors, voices and commentary · never present rumors as confirmed · operators are responsible for what they broadcast · <a href="/corrections/2026-07-11-automated-rumor-confirmations/">corrections</a></span>
+</aside>
+
+<script src="/avatar.js"></script>
+<script src="/lipsync.js"></script>
+<script src="/broadcast.js"></script>
+</body>
+</html>

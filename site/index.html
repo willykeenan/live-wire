@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Live Wire — The living newsroom by KE Studios</title>
+<meta name="description" content="Live Wire is the KE-operated living newsroom: a media system built to watch the wire, shape programs, produce shows, preserve receipts, publish corrections, and keep itself healthy under governance."/>
+<meta property="og:title" content="Live Wire — The living newsroom by KE Studios"/>
+<meta property="og:description" content="More than an AI news show: a KE-operated media business built to stay current, produce continuously, and always show its work. Public alpha."/>
+<meta property="og:type" content="website"/>
+<meta name="theme-color" content="#0a0c10"/>
+<link rel="icon" href="/logo.svg"/>
+<style>
+  :root{
+    --bg:#0a0c10; --panel:#12161d; --panel2:#181d26; --bord:#252c36; --bord2:#343e4c;
+    --tx:#f3f0e8; --tx2:#9aa4b2; --tx3:#6b7480;
+    --green:#3ecf9a; --amber:#f0b429; --red:#e85d5a; --gold:#efb958; --blue:#5aa8ff;
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--sans);
+       -webkit-font-smoothing:antialiased;line-height:1.55;font-size:15px;padding-bottom:56px}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--amber);
+       box-shadow:0 0 12px rgba(240,180,41,.7);animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+  header{position:sticky;top:0;z-index:30;background:rgba(10,12,16,.88);backdrop-filter:blur(14px);
+         border-bottom:1px solid rgba(37,44,54,.9)}
+  header .wrap{display:flex;align-items:center;gap:14px;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:750;letter-spacing:.15px}
+  .brand img{width:34px;height:34px;border-radius:9px}
+  .live{display:inline-flex;align-items:center;gap:7px;font:750 11px/1 var(--sans);letter-spacing:.7px;
+        text-transform:uppercase;color:var(--gold);padding:6px 11px;border-radius:999px;
+        border:1px solid rgba(239,185,88,.28);background:rgba(239,185,88,.07)}
+  .nav{margin-left:auto;display:flex;gap:10px;align-items:center}
+  .nav a.quiet{color:var(--tx2);font-size:13px;font-weight:600;padding:8px 10px}
+  .nav a.quiet:hover{color:var(--tx)}
+  .btn{font:650 14px/1 var(--sans);padding:12px 18px;border-radius:11px;border:1px solid var(--bord2);
+       background:transparent;color:var(--tx);cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:8px}
+  .btn:hover{background:var(--panel2);border-color:#4a5668}
+  .btn.primary{background:linear-gradient(180deg,#f06a67,#d94a47);border-color:transparent;color:#fff;
+               box-shadow:0 10px 28px rgba(232,93,90,.28)}
+  .btn.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+  .btn.ghost{background:rgba(255,255,255,.03)}
+
+  .hero{padding:88px 0 64px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(55% 45% at 70% 0%,rgba(90,168,255,.14),transparent 70%),
+      radial-gradient(40% 35% at 15% 20%,rgba(239,185,88,.10),transparent 65%)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;position:relative}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:28px}}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font:650 12px/1 var(--sans);letter-spacing:.65px;
+          text-transform:uppercase;color:var(--tx2);border:1px solid var(--bord);background:var(--panel);
+          padding:8px 14px;border-radius:999px;margin-bottom:22px}
+  h1{font-size:clamp(36px,5.6vw,64px);line-height:.98;margin:0 0 18px;letter-spacing:-1.4px;font-weight:850}
+  h1 em{font-style:normal;background:linear-gradient(105deg,#7dd3b0 0%,#efb958 48%,#f09595 100%);
+        -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:clamp(16px,2.1vw,19px);color:var(--tx2);max-width:36rem;margin:0 0 28px;line-height:1.55}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .chiprow{margin-top:26px;display:flex;gap:8px;flex-wrap:wrap}
+  .chip{border:1px solid var(--bord);background:rgba(18,22,29,.9);border-radius:999px;padding:7px 12px;
+        color:var(--tx3);font-size:12.5px;font-weight:600}
+
+  .hero-card{background:linear-gradient(165deg,rgba(239,185,88,.09),rgba(18,22,29,.98) 40%);
+             border:1px solid rgba(239,185,88,.28);border-radius:22px;padding:22px 22px 18px;
+             box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;overflow:hidden}
+  .hero-card::after{content:"";position:absolute;right:-40px;top:-50px;width:160px;height:160px;border-radius:50%;
+                    background:radial-gradient(circle,rgba(90,168,255,.18),transparent 70%);pointer-events:none}
+  .ticker{font:700 10px/1 var(--mono);letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .hero-card h2{font-size:22px;margin:0 0 8px;letter-spacing:-.4px}
+  .hero-card p{color:var(--tx2);margin:0 0 16px;font-size:14px}
+  .statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .stat{background:rgba(0,0,0,.28);border:1px solid var(--bord);border-radius:12px;padding:12px}
+  .stat b{display:block;font-size:18px;letter-spacing:-.3px;margin-bottom:2px}
+  .stat span{color:var(--tx3);font-size:11px;line-height:1.35}
+
+  section.band{padding:64px 0;border-top:1px solid var(--bord)}
+  h2{font-size:clamp(26px,3.2vw,36px);margin:0 0 12px;letter-spacing:-.6px;font-weight:850}
+  .lead{color:var(--tx2);max-width:40rem;margin:0 0 32px;font-size:16px}
+  .grid{display:grid;gap:16px}
+  .channels{grid-template-columns:1fr 1fr}
+  @media(max-width:740px){.channels{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--bord);border-radius:18px;padding:24px;transition:.15s}
+  .card:hover{border-color:#3a4656;transform:translateY(-2px)}
+  .card h3{margin:0 0 8px;font-size:20px;letter-spacing:-.3px}
+  .card.world{border-top:3px solid var(--blue)}
+  .card.markets{border-top:3px solid var(--green)}
+  .card .tag{font:750 10.5px/1 var(--sans);letter-spacing:.7px;text-transform:uppercase;color:var(--tx2)}
+  .card p{color:var(--tx2);margin:8px 0 0}
+
+  .features{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:900px){.features{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.features{grid-template-columns:1fr}}
+  .feat{background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:22px}
+  .feat .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+            background:rgba(239,185,88,.1);border:1px solid rgba(239,185,88,.18);font-size:16px}
+  .feat h3{margin:14px 0 8px;font-size:17px;letter-spacing:-.2px}
+  .feat p{color:var(--tx2);margin:0;font-size:14px}
+
+  .pitch{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:740px){.pitch{grid-template-columns:1fr}}
+  .pitch-block{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--bord);
+               border-radius:18px;padding:26px}
+  .pitch-block h3{margin:0 0 10px;font-size:18px}
+  .pitch-block ul{margin:0;padding:0;list-style:none}
+  .pitch-block li{padding:10px 0;border-top:1px solid var(--bord);color:var(--tx2);font-size:14px}
+  .pitch-block li:first-child{border-top:0}
+  .pitch-block li strong{color:var(--tx);font-weight:650}
+
+  .cast{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:900px){.cast{grid-template-columns:repeat(2,1fr)}}
+  .castcell{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px;
+            display:flex;flex-direction:column;align-items:center;text-align:center}
+  .castav{width:100%;aspect-ratio:1/1;position:relative;background:radial-gradient(120% 90% at 50% 20%,#1a2230,#0c1014);
+          border-radius:10px;overflow:hidden}
+  .castav .avatar{position:absolute;inset:0}
+  .avatar-rig,.avatar-base,.avatar-eyes,.avatar-mouth{position:absolute;inset:0}
+  .avatar-base{z-index:0}.avatar-eyes{z-index:1}.avatar-mouth{z-index:2}
+  .avatar-svg{width:100%;height:100%;display:block}
+  @keyframes lw-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.012)}}
+  .svg-breathe{animation:lw-breathe 4s ease-in-out infinite;transform-origin:50% 100%}
+  .eye-white{transition:ry .07s linear}.pupil{transition:r .07s linear}
+  .castname{font-weight:700;font-size:14px;margin-top:8px}
+  .casttitle{color:var(--tx2);font-size:11.5px;margin-top:2px}
+
+  .cta-band{text-align:center;background:
+    radial-gradient(60% 80% at 50% 100%,rgba(232,93,90,.12),transparent 70%)}
+  .cta-band .lead{margin-left:auto;margin-right:auto}
+
+  footer{border-top:1px solid var(--bord);padding:40px 0;color:var(--tx3);font-size:13px;text-align:center}
+  footer .brand{justify-content:center;font-size:16px;margin-bottom:8px;display:flex}
+  footer .ke-credit{display:inline-flex;align-items:center;gap:9px;margin-top:20px;color:var(--tx2);
+    text-decoration:none;font-size:13px;transition:color .15s}
+  footer .ke-credit:hover{color:var(--tx)}
+  footer .ke-credit b{font-weight:600}
+  .disclaim{max-width:680px;margin:14px auto 0;font-size:12px;color:var(--tx3);line-height:1.55}
+  .trustbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:center;gap:9px;
+            min-height:44px;padding:8px 18px;background:rgba(8,10,14,.96);border-top:1px solid var(--bord2);color:var(--tx2);
+            font-size:11.5px;line-height:1.35;text-align:center;backdrop-filter:blur(12px)}
+  .trustbar strong{color:var(--gold);font-size:10.5px;letter-spacing:.7px;text-transform:uppercase}
+  .trustbar a{color:#9FCBFF;text-decoration:underline;text-underline-offset:2px}
+  @media(max-width:560px){
+    .wrap{padding:0 16px}
+    header .wrap{height:58px}
+    .hero{padding:48px 0 40px}
+    section.band{padding:48px 0}
+    .statrow{grid-template-columns:1fr}
+    .nav .quiet{display:none}
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/"><img src="/logo.svg" alt=""/>live wire</a>
+  <span class="live"><span class="dot"></span> Public alpha</span>
+  <div class="nav">
+    <a class="quiet" href="#why">Why Live Wire</a>
+    <a class="quiet" href="#trust">Trust</a>
+    <a class="btn ghost" href="https://github.com/willykeenan/live-wire">GitHub</a>
+    <a class="btn primary" href="/live">Watch the demo →</a>
+  </div>
+</div></header>
+
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <div class="kicker"><span class="dot"></span> KE Studios · The living newsroom</div>
+    <h1>A network that runs<br><em>like a living business.</em></h1>
+    <p class="sub">Live Wire is being built as a complete KE-operated media company: watching the wire, shaping programs, producing shows, preserving receipts, publishing corrections, and maintaining the operation that keeps it all moving.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/willykeenan/live-wire">github.com/willykeenan/live-wire</a>
+      <a class="btn" href="#channels">Explore the concept</a>
+    </div>
+    <div class="chiprow">
+      <span class="chip">KE-operated system</span>
+      <span class="chip">Source-backed signals</span>
+      <span class="chip">Character-led programs</span>
+      <span class="chip">Governed autonomy</span>
+      <span class="chip">Corrections as product</span>
+    </div>
+  </div>
+  <aside class="hero-card" aria-label="Product snapshot">
+    <div class="ticker">THE SYSTEM BEHIND THE SCREEN · PUBLIC ALPHA</div>
+    <h2>The show is only the surface.</h2>
+    <p>Live Wire is designed to observe, program, produce, correct, and maintain itself under KE governance. Today’s public alpha proves the watch-and-trust foundation; shared-live and autonomous operation remain gated.</p>
+    <div class="statrow">
+      <div class="stat"><b>Observe</b><span>capture source-backed signals</span></div>
+      <div class="stat"><b>Program</b><span>turn accepted material into shows</span></div>
+      <div class="stat"><b>Maintain</b><span>preserve receipts, corrections, and recovery</span></div>
+    </div>
+  </aside>
+</div></section>
+
+<section class="band" id="why"><div class="wrap">
+  <h2>The product is not just the show. It is the company that keeps making it.</h2>
+  <p class="lead">Live Wire is the living newsroom: a KE-run operating system for turning a changing world into watchable programming while keeping sources, authority, costs, corrections, and recovery visible.</p>
+  <div class="pitch">
+    <div class="pitch-block">
+      <h3>What the audience gets</h3>
+      <ul>
+        <li><strong>A desk with presence</strong> — lower thirds, tickers, cast, and rhythm that read like a modern studio.</li>
+        <li><strong>Characters with a point of view</strong> — fictional anchors carry the tone; the satire is intentional and labeled.</li>
+        <li><strong>A network that stays accountable</strong> — source links, replayable editions, and corrections that remain part of the record.</li>
+      </ul>
+    </div>
+    <div class="pitch-block">
+      <h3>What keeps it running</h3>
+      <ul>
+        <li><strong>A governed signal desk</strong> — candidates enter with provenance instead of becoming automatic claims.</li>
+        <li><strong>A production loop</strong> — accepted material becomes rundowns, characters, voice, visuals, and owned programs.</li>
+        <li><strong>An operations layer</strong> — archives, corrections, budgets, recovery, and release gates keep the business healthy.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="operating-loop"><div class="wrap">
+  <h2>One governed loop, from signal to screen.</h2>
+  <p class="lead">This is the operating model Live Wire is growing into. Each stage must carry evidence forward; no stage receives permission merely because an earlier agent produced something convincing.</p>
+  <div class="grid features">
+    <div class="feat"><div class="ic">⌁</div><h3>Watch the wire</h3><p>Capture changing public signals with source identity and observation time attached.</p></div>
+    <div class="feat"><div class="ic">≋</div><h3>Build the rundown</h3><p>Organize candidates into programs without turning discovery into confirmation.</p></div>
+    <div class="feat"><div class="ic">▶</div><h3>Produce the show</h3><p>Coordinate scripts, characters, visuals, voice, and owned media into a watchable edition.</p></div>
+    <div class="feat"><div class="ic">✓</div><h3>Pass the gate</h3><p>Require provenance, rights, authority, and budget evidence before publication can proceed.</p></div>
+    <div class="feat"><div class="ic">↺</div><h3>Keep the network healthy</h3><p>Replay archives, recover safely, account for costs, and preserve exact operating receipts.</p></div>
+    <div class="feat"><div class="ic">＋</div><h3>Learn without erasing</h3><p>Append corrections and outcomes so the next edition improves without rewriting the last one.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="channels"><div class="wrap">
+  <h2>A 24/7 satirical news channel with cartoon anchors.</h2>
+  <p class="lead">LLM-written scripts, ElevenLabs voices, and mouth-synced cartoon anchors. The public edition ships a keyless demo. Satire is labelled. Rumors are never presented as confirmed. Operators are responsible for what they broadcast.</p>
+  <div class="grid channels">
+    <div class="card world"><span class="tag">On air</span><h3>World News</h3>
+      <p>World, politics, technology, and culture as a visual desk. Public-source links remain the source of record; generated summaries and character commentary may contain errors — and when they do, the product owns the correction.</p></div>
+    <div class="card world"><span class="tag">Demo</span><h3>Canned hour</h3>
+      <p>Run locally with no API keys. Invented names only. Cartoon mouth sync from synthetic timestamps until you add ANTHROPIC_API_KEY or the claude CLI, plus ELEVENLABS_API_KEY.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="cast"><div class="wrap">
+  <h2>The cast</h2>
+  <p class="lead">Eight fictional anchor concepts give the interface a point of view. Characters, voices, and commentary are generated; visual previews may be available while public audio remains gated.</p>
+  <div class="cast" id="cast"></div>
+</div></section>
+
+<section class="band" id="trust"><div class="wrap">
+  <h2>Trust is the product surface.</h2>
+  <p class="lead">Velocity without provenance is just content. Live Wire’s operating standard is simple: say what the system is, show where information came from, and stop when the evidence is not good enough.</p>
+  <div class="grid features">
+    <div class="feat"><div class="ic">⏸</div><h3>Rumor desk off by default</h3><p>X/Grok rumor scanning is optional and off unless you enable it. Rumors are never presented as confirmed.</p></div>
+    <div class="feat"><div class="ic">↗</div><h3>Sources stay visible</h3><p>Headline cards link outward to public sources. The alpha distinguishes source material from generated presentation.</p></div>
+    <div class="feat"><div class="ic">◉</div><h3>Broadcast-grade language</h3><p>Lower thirds, tickers, character staging, and editorial rhythm — cinematic without claiming a staffed network.</p></div>
+    <div class="feat"><div class="ic">◎</div><h3>Satire, on purpose</h3><p>Fictional anchors and generated commentary bring personality. Persistent labeling keeps the format legible.</p></div>
+    <div class="feat"><div class="ic">⊘</div><h3>Fail closed</h3><p>Public audio generation, rumor tools, and unsafe handoffs stay unavailable until containment and evidence gates pass.</p></div>
+    <div class="feat"><div class="ic">≡</div><h3>Corrections are product</h3><p>Material errors get dated public notes, clear remediation, and durable links — never silent deletion.</p></div>
+  </div>
+</div></section>
+
+<section class="band cta-band"><div class="wrap">
+  <h2>Watch the living newsroom take shape.</h2>
+  <p class="lead">See the verified public-alpha boundary today, then follow the system as the watch surface, newsroom loop, and governed operating layer graduate together.</p>
+  <div class="cta" style="justify-content:center">
+    <a class="btn primary" href="https://github.com/willykeenan/live-wire">Open GitHub</a>
+    <a class="btn" href="/corrections/2026-07-11-automated-rumor-confirmations/">Read a correction</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="brand"><img src="/logo.svg" alt="" style="width:24px;height:24px"/>live wire</div>
+  <div>Built to stay current. Built to show its work.</div>
+  <div class="disclaim">Live Wire is an experimental KE Studios product. Anchors, voices, and commentary are AI-generated and satirical and must stay labelled. Never present rumors as confirmed. Operators are responsible for what they broadcast. Headlines drawn from public sources should be verified at those sources. Source: <a href="https://github.com/willykeenan/live-wire">github.com/willykeenan/live-wire</a>.</div>
+  <a class="ke-credit" href="https://kestudios.dev" target="_blank" rel="noopener">
+    <svg width="20" height="20" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <defs><linearGradient id="ke-foot-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#7C6CFF"/><stop offset="1" stop-color="#22D3EE"/></linearGradient></defs>
+      <rect width="40" height="40" rx="11" fill="url(#ke-foot-grad)"/>
+      <g fill="#08080d">
+        <rect x="10.5" y="22" width="4.6" height="7.5" rx="1.4"/>
+        <rect x="17.7" y="16.5" width="4.6" height="13" rx="1.4"/>
+        <rect x="24.9" y="10.5" width="4.6" height="19" rx="1.4"/>
+      </g>
+    </svg>
+    <span>A <b>KE&nbsp;Studios</b> production</span>
+  </a>
+</div></footer>
+
+<aside class="trustbar" aria-label="Product disclosure">
+  <strong>PUBLIC ALPHA</strong>
+  <span>AI-generated anchors · satire · public-source links · not financial advice · <a href="/corrections/2026-07-11-automated-rumor-confirmations/">corrections</a></span>
+</aside>
+
+<script src="/avatar.js"></script>
+<script>
+(async () => {
+  try {
+    const roster = await (await fetch("/roster.json")).json();
+    const wrap = document.getElementById("cast");
+    roster.forEach((a) => {
+      const cell = document.createElement("div"); cell.className = "castcell";
+      const av = document.createElement("div"); av.className = "castav"; cell.appendChild(av);
+      const nm = document.createElement("div"); nm.className = "castname"; nm.textContent = a.name; cell.appendChild(nm);
+      const ti = document.createElement("div"); ti.className = "casttitle"; ti.textContent = a.title; cell.appendChild(ti);
+      wrap.appendChild(cell);
+      const avatar = window.LWAvatar.buildAvatar(av, a.avatar || { mode: "svg" });
+      window.LWAvatar.startBlinking(avatar);
+    });
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

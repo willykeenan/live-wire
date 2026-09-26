@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Live Wire — Alpha status</title>
+<meta name="description" content="Live Wire public-alpha status: broadcast preview is deliberately unavailable while trust, evidence, and release gates pass."/>
+<meta name="theme-color" content="#0a0c10"/>
+<link rel="icon" href="/logo.svg"/>
+<style>
+  :root{
+    --bg:#0a0c10;--panel:#12161d;--panel2:#181d26;--bord:#2e3742;
+    --tx:#f3f0e8;--tx2:#9aa4b2;--tx3:#6b7480;--amber:#f0b429;--blue:#5aa8ff;--gold:#efb958;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--tx);font-family:var(--sans)}
+  body{min-height:100vh;display:grid;place-items:center;padding:32px 20px;overflow-x:hidden;position:relative}
+  body::before{content:"";position:fixed;inset:0;background:
+    radial-gradient(55% 55% at 50% 0,rgba(90,168,255,.12),transparent 70%),
+    radial-gradient(40% 40% at 80% 20%,rgba(239,185,88,.08),transparent 60%),
+    linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+    background-size:auto,auto,44px 44px,44px 44px;pointer-events:none}
+  .shell{position:relative;width:min(780px,100%);z-index:1}
+  .brand{display:flex;align-items:center;justify-content:center;gap:11px;margin-bottom:22px;font-weight:750;font-size:19px;letter-spacing:.2px;text-decoration:none;color:inherit}
+  .brand img{width:34px;height:34px;border-radius:9px}
+  .card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(239,185,88,.09),rgba(18,22,29,.98) 42%);
+        border:1px solid rgba(239,185,88,.35);border-radius:22px;padding:clamp(26px,6vw,52px);box-shadow:0 28px 90px rgba(0,0,0,.42)}
+  .card::after{content:"";position:absolute;right:-120px;top:-150px;width:340px;height:340px;border-radius:50%;
+               background:radial-gradient(circle,rgba(239,185,88,.14),transparent 67%);pointer-events:none}
+  .eyebrow{position:relative;display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-size:11px;font-weight:750;
+           letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(239,185,88,.28);background:rgba(239,185,88,.07);
+           border-radius:999px;padding:7px 11px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px rgba(240,180,41,.6)}
+  h1{position:relative;font-size:clamp(30px,5.5vw,48px);line-height:1.05;letter-spacing:-1.1px;margin:22px 0 14px;max-width:640px;font-weight:850}
+  .lede{position:relative;color:var(--tx2);font-size:clamp(15px,2.2vw,18px);line-height:1.65;max-width:640px;margin:0}
+  .status{position:relative;margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--bord);
+          border-radius:14px;overflow:hidden;background:rgba(12,16,20,.56)}
+  .status div{padding:15px 16px;border-right:1px solid var(--bord)}
+  .status div:last-child{border:0}
+  .status b{display:block;color:var(--tx);font-size:12px;margin-bottom:4px}
+  .status span{color:var(--tx3);font-size:11.5px;line-height:1.4}
+  .actions{position:relative;display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:11px;border:1px solid var(--bord);
+       color:var(--tx);font-size:13px;font-weight:650;text-decoration:none;background:var(--panel2);transition:.15s}
+  .btn:hover{border-color:#526070;transform:translateY(-1px)}
+  .btn.primary{color:#10151b;background:#9FCBFF;border-color:#9FCBFF}
+  .note{position:relative;margin-top:22px;padding:14px 16px;border-radius:12px;border:1px solid var(--bord);
+        background:rgba(0,0,0,.25);color:var(--tx2);font-size:13px;line-height:1.5}
+  .note strong{color:var(--tx)}
+  .disclosure{max-width:650px;margin:17px auto 0;color:var(--tx3);font-size:11.5px;line-height:1.55;text-align:center}
+  .ke{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:19px;color:var(--tx3);font-size:11px;text-decoration:none}
+  .ke:hover{color:var(--tx2)}
+  @media(max-width:600px){
+    body{padding:20px 14px}.card{border-radius:18px}.status{grid-template-columns:1fr}
+    .status div{border-right:0;border-bottom:1px solid var(--bord)}.actions{flex-direction:column}.btn{width:100%}
+  }
+</style>
+</head>
+<body data-state="demo">
+<main class="shell">
+  <a class="brand" href="/"><img src="/logo.svg" alt="Live Wire logo"/>live wire</a>
+  <section class="card" aria-labelledby="status-title">
+    <div class="eyebrow"><span class="dot"></span> SATIRE · PUBLIC DEMO</div>
+    <h1 id="status-title">Run the 24/7 satirical newsroom locally.</h1>
+    <p class="lede">Live Wire is a cartoon-anchor channel with mouth sync, LLM-written scripts, and optional ElevenLabs voices. Clone the repo, start demo mode with no keys, and keep satire labelled.</p>
+    <div class="status" aria-label="Release status">
+      <div><b>Demo mode</b><span>Canned scripts, no keys</span></div>
+      <div><b>Rumor scanning</b><span>Optional, off by default</span></div>
+      <div><b>Markets tab</b><span>Removed from this edition</span></div>
+    </div>
+    <p class="note"><strong>Content policy:</strong> satire must be labelled. Never present rumors as confirmed. Operators are responsible for what they broadcast.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://github.com/willykeenan/live-wire">github.com/willykeenan/live-wire</a>
+      <a class="btn" href="/corrections/2026-07-11-automated-rumor-confirmations/">Read the correction</a>
+    </div>
+  </section>
+  <p class="disclosure">AI-generated anchors, voices and commentary · satire · public-source links remain the source of record</p>
+  <a class="ke" href="https://kestudios.dev" target="_blank" rel="noopener">A K&amp;E Studios product</a>
+</main>
+</body>
+</html>

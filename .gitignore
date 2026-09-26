@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.env
+data/voices/
+data/rumor_tracks.json
+data/archive/*
+!data/archive/.gitkeep
+*.log
+# Private maintainer release notes; never part of the public repo.
+RELEASE-NOTES-FOR-*.md
